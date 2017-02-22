@@ -1,0 +1,37 @@
+00:35:29.572 [main] DEBUG LocationTest - ----------onCreate() Nexus 5X
+00:35:30.333 [main] INFO  LocationTest - registerGnssStatusCallback
+00:35:30.605 [main] INFO  LocationTest - doGrantedLocationUpdate -- fused
+00:35:30.605 [main] INFO  LocationTest - MainActivity
+00:35:30.606 [main] DEBUG LocationTest - MainActivity
+00:35:30.611 [main] INFO  LocationTest - normal:1000 / fastest:1000
+00:35:30.643 [main] INFO  LocationTest - startActivityRecognition
+00:35:30.711 [main] DEBUG LocationTest - 02/27 00:35:30  -- elapsed:1488123330706 / acc:20.581 - - fused (net=WIFI)
+00:35:30.744 [main] DEBUG LocationTest - DetectedActivity [type=STILL, confidence=100]
+00:35:36.673 [main] DEBUG LocationTest - 02/27 00:35:36  -- elapsed:5962 / acc:21.281 - - fused (net=WIFI)
+00:35:38.053 [main] DEBUG LocationTest - 02/27 00:35:38  -- elapsed:1379 / acc:21.32 - - fused (net=WIFI)
+00:35:43.056 [main] DEBUG LocationTest - 02/27 00:35:43  -- elapsed:4999 / acc:21.302 - - fused (net=WIFI)
+00:35:48.083 [main] DEBUG LocationTest - 02/27 00:35:48  -- elapsed:5030 / acc:21.302 - - fused (net=WIFI)
+00:35:53.126 [main] DEBUG LocationTest - 02/27 00:35:53  -- elapsed:5044 / acc:21.25 - - fused (net=WIFI)
+00:35:58.103 [main] DEBUG LocationTest - 02/27 00:35:58  -- elapsed:4981 / acc:21.304 - - fused (net=WIFI)
+00:36:03.119 [main] DEBUG LocationTest - 02/27 00:36:03  -- elapsed:5013 / acc:21.304 - - fused (net=WIFI)
+00:36:08.163 [main] DEBUG LocationTest - 02/27 00:36:08  -- elapsed:5046 / acc:20.523 - - fused (net=WIFI)
+00:36:13.066 [main] DEBUG LocationTest - 02/27 00:36:13  -- elapsed:4903 / acc:21.326 - - fused (net=WIFI)
+00:36:18.079 [main] DEBUG LocationTest - 02/27 00:36:18  -- elapsed:5010 / acc:21.326 - - fused (net=WIFI)
+00:36:23.101 [main] DEBUG LocationTest - 02/27 00:36:23  -- elapsed:5024 / acc:21.327 - - fused (net=WIFI)
+00:36:28.116 [main] DEBUG LocationTest - 02/27 00:36:28  -- elapsed:5014 / acc:21.279 - - fused (net=WIFI)
+00:36:33.133 [main] DEBUG LocationTest - 02/27 00:36:33  -- elapsed:5015 / acc:21.279 - - fused (net=WIFI)
+00:36:38.157 [main] DEBUG LocationTest - 02/27 00:36:38  -- elapsed:5024 / acc:21.261 - - fused (net=WIFI)
+00:36:43.176 [main] DEBUG LocationTest - 02/27 00:36:43  -- elapsed:5023 / acc:21.261 - - fused (net=WIFI)
+00:36:48.164 [main] DEBUG LocationTest - 02/27 00:36:48  -- elapsed:4987 / acc:21.24 - - fused (net=WIFI)
+00:36:53.106 [main] DEBUG LocationTest - 02/27 00:36:53  -- elapsed:4940 / acc:21.3 - - fused (net=WIFI)
+00:36:58.135 [main] DEBUG LocationTest - 02/27 00:36:58  -- elapsed:5031 / acc:21.311 - - fused (net=WIFI)
+00:37:03.173 [main] DEBUG LocationTest - 02/27 00:37:03  -- elapsed:5017 / acc:21.311 - - fused (net=WIFI)
+00:37:08.233 [main] DEBUG LocationTest - 02/27 00:37:08  -- elapsed:5078 / acc:21.281 - - fused (net=WIFI)
+00:37:13.191 [main] DEBUG LocationTest - 02/27 00:37:13  -- elapsed:4960 / acc:20.481 - - fused (net=WIFI)
+00:37:18.213 [main] DEBUG LocationTest - 02/27 00:37:18  -- elapsed:5008 / acc:20.481 - - fused (net=WIFI)
+00:37:23.290 [main] DEBUG LocationTest - 02/27 00:37:23  -- elapsed:5089 / acc:21.278 - - fused (net=WIFI)
+00:37:28.222 [main] DEBUG LocationTest - 02/27 00:37:28  -- elapsed:4934 / acc:20.623 - - fused (net=WIFI)
+00:37:29.630 [main] INFO  LocationTest - unregisterGnssStatusCallback
+00:37:29.631 [main] INFO  LocationTest - stopFusedLocationUpdate
+00:37:29.640 [main] INFO  LocationTest - stopActivityRecognition
+00:37:29.657 [main] DEBUG LocationTest - ----------onDestroy()

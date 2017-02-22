@@ -1,0 +1,153 @@
+17:02:17.875 [main] INFO  LocationTest - doGrantedLocationUpdate -- plat
+17:02:17.879 [main] INFO  LocationTest - startPlatformLocationUpdate
+17:02:17.883 [main] INFO  LocationTest - GPS: minTime=1000/ minDistance:1.0 --- Network: minTime=1000/ minDistance:1.0
+17:02:17.884 [main] INFO  LocationTest - registerGnssStatusCallback
+17:02:18.654 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:02:18.674 [main] DEBUG LocationTest - 02/26 17:02:18  -- elapsed:997 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:19.606 [main] DEBUG LocationTest - 02/26 17:02:19  -- elapsed:931 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:21.654 [main] DEBUG LocationTest - 02/26 17:02:21  -- elapsed:2045 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:22.103 [main] DEBUG LocationTest - DetectedActivity [type=TILTING, confidence=100]
+17:02:22.129 [main] DEBUG LocationTest - DetectedActivity [type=IN_VEHICLE, confidence=75]
+17:02:22.202 [main] DEBUG LocationTest - DetectedActivity [type=IN_VEHICLE, confidence=75]
+17:02:24.672 [main] DEBUG LocationTest - 02/26 17:02:24  -- elapsed:3019 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:27.674 [main] DEBUG LocationTest - 02/26 17:02:27  -- elapsed:2997 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:30.656 [main] DEBUG LocationTest - 02/26 17:02:30  -- elapsed:2987 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:31.657 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:02:33.667 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:02:33.678 [main] DEBUG LocationTest - 02/26 17:02:33  -- elapsed:3020 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:35.658 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:02:36.653 [main] INFO  LocationTest - Gps count = total=22/used=10 - -
+17:02:37.647 [main] INFO  LocationTest - Gps count = total=22/used=11 - -
+17:02:37.659 [main] DEBUG LocationTest - 02/26 17:02:37  -- elapsed:3983 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:38.289 [main] DEBUG LocationTest - DetectedActivity [type=IN_VEHICLE, confidence=75]
+17:02:40.655 [main] INFO  LocationTest - Gps count = total=22/used=10 - -
+17:02:42.678 [main] DEBUG LocationTest - 02/26 17:02:42  -- elapsed:5018 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:44.662 [main] INFO  LocationTest - Gps count = total=22/used=11 - -
+17:02:46.658 [main] DEBUG LocationTest - 02/26 17:02:46  -- elapsed:3981 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:49.693 [main] DEBUG LocationTest - 02/26 17:02:49  -- elapsed:3033 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:52.678 [main] DEBUG LocationTest - 02/26 17:02:52  -- elapsed:2984 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:54.360 [main] DEBUG LocationTest - DetectedActivity [type=TILTING, confidence=100]
+17:02:54.390 [main] DEBUG LocationTest - DetectedActivity [type=ON_BICYCLE, confidence=75]
+17:02:55.678 [main] DEBUG LocationTest - 02/26 17:02:55  -- elapsed:3001 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:57.672 [main] INFO  LocationTest - Gps count = total=22/used=10 - -
+17:02:57.681 [main] DEBUG LocationTest - 02/26 17:02:57  -- elapsed:2004 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:59.674 [main] DEBUG LocationTest - 02/26 17:02:59  -- elapsed:1992 / acc:3.0 - - plat (net=true/MOBILE)
+17:02:59.980 [main] DEBUG LocationTest - 02/26 17:02:59  -- elapsed:311 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:00.659 [main] DEBUG LocationTest - 02/26 17:03:00  -- elapsed:676 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:01.650 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:03:02.651 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:03:03.651 [main] DEBUG LocationTest - 02/26 17:03:03  -- elapsed:2994 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:08.661 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:03:10.480 [main] DEBUG LocationTest - DetectedActivity [type=ON_BICYCLE, confidence=75]
+17:03:11.634 [main] INFO  LocationTest - Gps count = total=23/used=9 - -
+17:03:12.632 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:03:12.640 [main] DEBUG LocationTest - 02/26 17:03:12  -- elapsed:8987 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:14.656 [main] DEBUG LocationTest - 02/26 17:03:14  -- elapsed:2013 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:16.658 [main] DEBUG LocationTest - 02/26 17:03:16  -- elapsed:2004 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:19.684 [main] DEBUG LocationTest - 02/26 17:03:19  -- elapsed:3027 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:24.648 [main] DEBUG LocationTest - 02/26 17:03:24  -- elapsed:4962 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:25.649 [main] INFO  LocationTest - Gps count = total=23/used=9 - -
+17:03:26.553 [main] DEBUG LocationTest - DetectedActivity [type=TILTING, confidence=100]
+17:03:26.554 [main] DEBUG LocationTest - DetectedActivity [type=IN_VEHICLE, confidence=75]
+17:03:26.640 [main] DEBUG LocationTest - 02/26 17:03:26  -- elapsed:1997 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:27.653 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:03:28.667 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:03:28.685 [main] DEBUG LocationTest - 02/26 17:03:28  -- elapsed:2043 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:30.681 [main] DEBUG LocationTest - 02/26 17:03:30  -- elapsed:1994 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:32.665 [main] DEBUG LocationTest - 02/26 17:03:32  -- elapsed:1987 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:35.670 [main] DEBUG LocationTest - 02/26 17:03:35  -- elapsed:3003 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:38.680 [main] DEBUG LocationTest - 02/26 17:03:38  -- elapsed:3010 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:40.376 [main] DEBUG LocationTest - 02/26 17:03:40  -- elapsed:1699 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:40.658 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:03:41.664 [main] DEBUG LocationTest - 02/26 17:03:41  -- elapsed:1283 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:42.636 [main] DEBUG LocationTest - DetectedActivity [type=IN_VEHICLE, confidence=75]
+17:03:42.657 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:03:44.652 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:03:44.661 [main] DEBUG LocationTest - 02/26 17:03:44  -- elapsed:3000 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:46.646 [main] DEBUG LocationTest - 02/26 17:03:46  -- elapsed:1986 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:48.667 [main] DEBUG LocationTest - 02/26 17:03:48  -- elapsed:2021 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:50.660 [main] DEBUG LocationTest - 02/26 17:03:50  -- elapsed:1993 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:52.670 [main] DEBUG LocationTest - 02/26 17:03:52  -- elapsed:2009 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:53.664 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:03:54.677 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:03:54.697 [main] DEBUG LocationTest - 02/26 17:03:54  -- elapsed:2028 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:56.661 [main] DEBUG LocationTest - 02/26 17:03:56  -- elapsed:1965 / acc:3.0 - - plat (net=true/MOBILE)
+17:03:57.657 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:03:58.728 [main] DEBUG LocationTest - DetectedActivity [type=TILTING, confidence=100]
+17:03:58.765 [main] DEBUG LocationTest - DetectedActivity [type=ON_BICYCLE, confidence=75]
+17:03:59.662 [main] INFO  LocationTest - Gps count = total=23/used=12 - -
+17:03:59.690 [main] DEBUG LocationTest - 02/26 17:03:59  -- elapsed:3027 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:00.290 [main] DEBUG LocationTest - 02/26 17:04:00  -- elapsed:602 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:02.672 [main] DEBUG LocationTest - 02/26 17:04:02  -- elapsed:2378 / acc:5.0 - - plat (net=true/MOBILE)
+17:04:03.655 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:04:05.648 [main] DEBUG LocationTest - 02/26 17:04:05  -- elapsed:2977 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:06.641 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:04:07.636 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:04:08.652 [main] INFO  LocationTest - Gps count = total=23/used=9 - -
+17:04:08.660 [main] DEBUG LocationTest - 02/26 17:04:08  -- elapsed:3012 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:10.657 [main] DEBUG LocationTest - 02/26 17:04:10  -- elapsed:1999 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:12.640 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:04:13.645 [main] DEBUG LocationTest - 02/26 17:04:13  -- elapsed:2988 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:14.818 [main] DEBUG LocationTest - DetectedActivity [type=TILTING, confidence=100]
+17:04:14.831 [main] DEBUG LocationTest - DetectedActivity [type=IN_VEHICLE, confidence=75]
+17:04:15.644 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:04:15.668 [main] DEBUG LocationTest - 02/26 17:04:15  -- elapsed:2023 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:16.663 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:04:17.681 [main] DEBUG LocationTest - 02/26 17:04:17  -- elapsed:2014 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:18.662 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:04:19.659 [main] DEBUG LocationTest - 02/26 17:04:19  -- elapsed:1978 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:19.726 [main] DEBUG LocationTest - 02/26 17:04:19  -- elapsed:67 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:20.670 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:04:24.653 [main] DEBUG LocationTest - 02/26 17:04:24  -- elapsed:4925 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:28.637 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:04:28.687 [main] DEBUG LocationTest - 02/26 17:04:28  -- elapsed:4034 / acc:4.0 - - plat (net=true/MOBILE)
+17:04:30.639 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:04:30.921 [main] DEBUG LocationTest - DetectedActivity [type=ON_BICYCLE, confidence=75]
+17:04:31.650 [main] DEBUG LocationTest - 02/26 17:04:31  -- elapsed:2958 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:33.665 [main] DEBUG LocationTest - 02/26 17:04:33  -- elapsed:2020 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:35.675 [main] DEBUG LocationTest - 02/26 17:04:35  -- elapsed:2011 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:35.686 [main] INFO  LocationTest - Gps count = total=23/used=10 - -
+17:04:37.662 [main] DEBUG LocationTest - 02/26 17:04:37  -- elapsed:1987 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:38.662 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:04:39.668 [main] INFO  LocationTest - Gps count = total=23/used=12 - -
+17:04:39.762 [main] DEBUG LocationTest - 02/26 17:04:39  -- elapsed:2100 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:40.674 [main] DEBUG LocationTest - 02/26 17:04:40  -- elapsed:911 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:41.664 [main] INFO  LocationTest - Gps count = total=23/used=11 - -
+17:04:43.671 [main] INFO  LocationTest - Gps count = total=22/used=11 - -
+17:04:45.677 [main] DEBUG LocationTest - 02/26 17:04:45  -- elapsed:5003 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:47.001 [main] DEBUG LocationTest - DetectedActivity [type=ON_BICYCLE, confidence=75]
+17:04:47.038 [main] DEBUG LocationTest - DetectedActivity [type=ON_BICYCLE, confidence=75]
+17:04:48.671 [main] INFO  LocationTest - Gps count = total=22/used=10 - -
+17:04:49.667 [main] INFO  LocationTest - Gps count = total=22/used=9 - -
+17:04:49.682 [main] DEBUG LocationTest - 02/26 17:04:49  -- elapsed:4004 / acc:3.0 - - plat (net=true/MOBILE)
+17:04:50.362 [main] INFO  LocationTest - unregisterGnssStatusCallback
+17:04:50.366 [main] INFO  LocationTest - doGrantedLocationUpdate -- fused
+17:04:50.367 [main] INFO  LocationTest - MainActivity
+17:04:50.368 [main] INFO  LocationTest - normal:1000 / fastest:1000
+17:04:50.378 [main] INFO  LocationTest - registerGnssStatusCallback
+17:04:51.518 [main] DEBUG LocationTest - 02/26 17:04:51  -- elapsed:1839 / acc:3.0 - - fused (net=true/MOBILE)
+17:04:52.668 [main] DEBUG LocationTest - 02/26 17:04:52  -- elapsed:1147 / acc:3.0 - - fused (net=true/MOBILE)
+17:04:54.657 [main] DEBUG LocationTest - 02/26 17:04:54  -- elapsed:1990 / acc:3.0 - - fused (net=true/MOBILE)
+17:04:55.652 [main] DEBUG LocationTest - 02/26 17:04:55  -- elapsed:997 / acc:3.0 - - fused (net=true/MOBILE)
+17:04:56.652 [main] DEBUG LocationTest - 02/26 17:04:56  -- elapsed:1000 / acc:3.0 - - fused (net=true/MOBILE)
+17:04:58.659 [main] DEBUG LocationTest - 02/26 17:04:58  -- elapsed:2006 / acc:3.0 - - fused (net=true/MOBILE)
+17:04:59.662 [main] DEBUG LocationTest - 02/26 17:04:59  -- elapsed:1002 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:01.658 [main] DEBUG LocationTest - 02/26 17:05:01  -- elapsed:1997 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:02.681 [main] DEBUG LocationTest - 02/26 17:05:02  -- elapsed:1019 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:03.094 [main] DEBUG LocationTest - DetectedActivity [type=TILTING, confidence=100]
+17:05:03.146 [main] DEBUG LocationTest - DetectedActivity [type=ON_BICYCLE, confidence=75]
+17:05:04.687 [main] DEBUG LocationTest - 02/26 17:05:04  -- elapsed:2010 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:05.688 [main] DEBUG LocationTest - 02/26 17:05:05  -- elapsed:1003 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:07.685 [main] DEBUG LocationTest - 02/26 17:05:07  -- elapsed:1994 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:09.682 [main] DEBUG LocationTest - 02/26 17:05:09  -- elapsed:1994 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:10.675 [main] DEBUG LocationTest - 02/26 17:05:10  -- elapsed:997 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:12.701 [main] DEBUG LocationTest - 02/26 17:05:12  -- elapsed:2023 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:13.685 [main] DEBUG LocationTest - 02/26 17:05:13  -- elapsed:984 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:14.685 [main] DEBUG LocationTest - 02/26 17:05:14  -- elapsed:1003 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:16.666 [main] DEBUG LocationTest - 02/26 17:05:16  -- elapsed:1982 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:17.684 [main] DEBUG LocationTest - 02/26 17:05:17  -- elapsed:1016 / acc:3.0 - - fused (net=true/MOBILE)
+17:05:19.270 [main] DEBUG LocationTest - DetectedActivity [type=TILTING, confidence=100]
+17:05:19.271 [main] DEBUG LocationTest - DetectedActivity [type=UNKNOWN, confidence=75]
+17:05:19.464 [main] INFO  LocationTest - unregisterGnssStatusCallback
+17:05:19.464 [main] INFO  LocationTest - stopFusedLocationUpdate
+17:05:19.474 [main] INFO  LocationTest - stopActivityRecognition

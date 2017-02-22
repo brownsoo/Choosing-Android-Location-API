@@ -1,0 +1,50 @@
+15:16:29.565 [main] DEBUG LocationTest - ----------------------------------------------------------------------
+15:16:29.566 [main] DEBUG LocationTest - ----------onCreate() LG-F800K
+15:16:30.363 [main] INFO  LocationTest - registerGnssStatusCallback
+15:16:30.561 [main] INFO  LocationTest - doGrantedLocationUpdate -- fused
+15:16:30.562 [main] INFO  LocationTest - MainActivity
+15:16:30.563 [main] DEBUG LocationTest - MainActivity
+15:16:30.564 [main] INFO  LocationTest - normal:1000 / fastest:1000
+15:16:30.573 [main] INFO  LocationTest - startActivityRecognition
+15:16:30.596 [main] DEBUG LocationTest - 03/02 15:16:30  26 /19.655ac /-1.00m /fused /MOBILE
+15:16:31.934 [main] INFO  LocationTest - Gps count = total=31/used=0 - -
+15:16:34.178 [main] DEBUG LocationTest - DetectedActivity [type=STILL, confidence=100]
+15:16:35.711 [main] DEBUG LocationTest - 03/02 15:16:35  5102 /1600.0ac /112.15m /fused /MOBILE
+15:16:39.235 [main] DEBUG LocationTest - DetectedActivity [type=STILL, confidence=77]
+15:16:40.828 [main] DEBUG LocationTest - 03/02 15:16:40  5132 /1600.0ac /0.00m /fused /MOBILE
+15:16:44.282 [main] DEBUG LocationTest - DetectedActivity [type=STILL, confidence=100]
+15:16:45.928 [main] INFO  LocationTest - Gps count = total=31/used=1 - -
+15:16:45.972 [main] DEBUG LocationTest - 03/02 15:16:45  5142 /1600.0ac /0.00m /fused /MOBILE
+15:16:47.931 [main] INFO  LocationTest - Gps count = total=31/used=2 - -
+15:16:49.456 [main] DEBUG LocationTest - DetectedActivity [type=STILL, confidence=100]
+15:16:50.618 [main] INFO  LocationTest - Gps count = total=31/used=3 - -
+15:16:51.018 [main] DEBUG LocationTest - 03/02 15:16:51  5049 /1600.0ac /0.00m /fused /MOBILE
+15:16:54.492 [main] DEBUG LocationTest - DetectedActivity [type=STILL, confidence=100]
+15:16:54.527 [main] INFO  LocationTest - Gps count = total=31/used=5 - -
+15:16:56.062 [main] DEBUG LocationTest - 03/02 15:16:56  5045 /1600.0ac /0.00m /fused /MOBILE
+15:16:56.550 [main] INFO  LocationTest - Gps count = total=31/used=6 - -
+15:16:58.529 [main] INFO  LocationTest - Gps count = total=31/used=8 - -
+15:16:58.567 [main] DEBUG LocationTest - 03/02 15:16:58  2501 /56.129ac /112.56m /fused /MOBILE
+15:16:59.551 [main] INFO  LocationTest - Gps count = total=31/used=9 - -
+15:16:59.575 [main] DEBUG LocationTest - 03/02 15:16:59  1007 /56.129ac /0.05m /fused /MOBILE
+15:16:59.600 [main] DEBUG LocationTest - DetectedActivity [type=STILL, confidence=100]
+15:17:01.559 [main] DEBUG LocationTest - 03/02 15:17:01  1987 /39.442ac /0.21m /fused /MOBILE
+15:17:02.567 [main] DEBUG LocationTest - 03/02 15:17:02  1009 /36.408ac /0.04m /fused /MOBILE
+15:17:04.536 [main] INFO  LocationTest - Gps count = total=31/used=10 - -
+15:17:04.563 [main] DEBUG LocationTest - 03/02 15:17:04  1995 /33.374ac /0.06m /fused /MOBILE
+15:17:05.010 [main] DEBUG LocationTest - DetectedActivity [type=STILL, confidence=100]
+15:17:05.544 [main] INFO  LocationTest - Gps count = total=31/used=11 - -
+15:17:05.578 [main] DEBUG LocationTest - 03/02 15:17:05  1017 /33.374ac /0.01m /fused /MOBILE
+15:17:07.532 [main] INFO  LocationTest - Gps count = total=31/used=12 - -
+15:17:07.551 [main] DEBUG LocationTest - 03/02 15:17:07  1971 /31.857ac /0.02m /fused /MOBILE
+15:17:08.569 [main] DEBUG LocationTest - 03/02 15:17:08  1016 /31.857ac /0.02m /fused /MOBILE
+15:17:09.405 [main] DEBUG LocationTest - DetectedActivity [type=STILL, confidence=100]
+15:17:10.555 [main] DEBUG LocationTest - 03/02 15:17:10  1976 /30.34ac /0.05m /fused /MOBILE
+15:17:11.551 [main] INFO  LocationTest - Gps count = total=31/used=13 - -
+15:17:11.561 [main] DEBUG LocationTest - 03/02 15:17:11  1014 /28.823ac /0.01m /fused /MOBILE
+15:17:13.540 [main] DEBUG LocationTest - 03/02 15:17:13  1985 /28.823ac /0.07m /fused /MOBILE
+15:17:13.752 [main] INFO  LocationTest - unregisterGnssStatusCallback
+15:17:13.753 [main] INFO  LocationTest - stopFusedLocationUpdate
+15:17:13.759 [main] INFO  LocationTest - stopActivityRecognition
+15:17:13.762 [main] DEBUG LocationTest - ----------onDestroy()
+15:17:13.763 [main] DEBUG LocationTest - ----------------------------------------------------------------------

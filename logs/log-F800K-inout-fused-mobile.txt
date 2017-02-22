@@ -1,0 +1,89 @@
+13:28:24.581 [main] INFO  LocationTest - Gps count = total=20/used=12 - -
+13:28:24.622 [main] DEBUG LocationTest - 03/02 13:28:24  1020/7.585ac/1.29m/fused/MOBILE
+13:28:26.549 [main] INFO  LocationTest - Gps count = total=16/used=6 - -
+13:28:26.584 [main] DEBUG LocationTest - 03/02 13:28:26  1956/9.102ac/3.80m/fused/MOBILE
+13:28:27.112 [main] DEBUG LocationTest - DetectedActivity [type=IN_VEHICLE, confidence=39]
+13:28:28.521 [main] INFO  LocationTest - Gps count = total=29/used=4 - -
+13:28:28.544 [main] DEBUG LocationTest - 03/02 13:28:28  1961/96.0ac/0.89m/fused/MOBILE
+13:28:29.531 [main] INFO  LocationTest - Gps count = total=30/used=7 - -
+13:28:30.542 [main] DEBUG LocationTest - 03/02 13:28:30  2001/21.238ac/0.96m/fused/MOBILE
+13:28:31.518 [main] INFO  LocationTest - Gps count = total=30/used=8 - -
+13:28:31.559 [main] DEBUG LocationTest - 03/02 13:28:31  1019/22.755ac/0.68m/fused/MOBILE
+13:28:31.624 [main] DEBUG LocationTest - DetectedActivity [type=IN_VEHICLE, confidence=77]
+13:28:33.556 [main] DEBUG LocationTest - 03/02 13:28:33  1982/31.857ac/1.91m/fused/MOBILE
+13:28:35.551 [main] DEBUG LocationTest - 03/02 13:28:35  2002/42.476ac/2.03m/fused/MOBILE
+13:28:37.555 [main] DEBUG LocationTest - 03/02 13:28:37  2006/50.061ac/1.98m/fused/MOBILE
+13:28:39.550 [main] DEBUG LocationTest - 03/02 13:28:39  1993/59.163ac/2.36m/fused/MOBILE
+13:28:41.544 [main] DEBUG LocationTest - 03/02 13:28:41  1998/75.85ac/2.98m/fused/MOBILE
+13:28:43.540 [main] DEBUG LocationTest - 03/02 13:28:43  1999/104.673ac/1.45m/fused/MOBILE
+13:28:45.548 [main] DEBUG LocationTest - 03/02 13:28:45  2004/141.081ac/2.39m/fused/MOBILE
+13:28:47.541 [main] DEBUG LocationTest - 03/02 13:28:47  1994/180.523ac/1.39m/fused/MOBILE
+13:28:49.547 [main] DEBUG LocationTest - 03/02 13:28:49  2006/235.135ac/1.16m/fused/MOBILE
+13:28:50.556 [main] DEBUG LocationTest - 03/02 13:28:50  1011/268.509ac/0.69m/fused/MOBILE
+13:28:52.554 [main] DEBUG LocationTest - 03/02 13:28:52  1988/298.849ac/0.85m/fused/MOBILE
+13:28:53.525 [main] INFO  LocationTest - Gps count = total=31/used=8 - -
+13:28:54.546 [main] DEBUG LocationTest - 03/02 13:28:54  2001/335.257ac/4.97m/fused/MOBILE
+13:28:55.535 [main] INFO  LocationTest - Gps count = total=30/used=6 - -
+13:28:56.521 [main] INFO  LocationTest - Gps count = total=31/used=6 - -
+13:28:57.553 [main] DEBUG LocationTest - 03/02 13:28:57  3005/351.944ac/8.02m/fused/MOBILE
+13:28:58.555 [main] DEBUG LocationTest - 03/02 13:28:58  1002/358.012ac/0.80m/fused/MOBILE
+13:29:00.527 [main] INFO  LocationTest - Gps count = total=31/used=5 - -
+13:29:00.549 [main] DEBUG LocationTest - 03/02 13:29:00  1997/356.495ac/0.69m/fused/MOBILE
+13:29:01.411 [main] DEBUG LocationTest - DetectedActivity [type=STILL, confidence=40]
+13:29:02.547 [main] DEBUG LocationTest - 03/02 13:29:02  1995/356.495ac/0.17m/fused/MOBILE
+13:29:03.624 [main] DEBUG LocationTest - 03/02 13:29:03  1082/357.272ac/0.02m/fused/MOBILE
+13:29:05.563 [main] DEBUG LocationTest - 03/02 13:29:05  1935/356.495ac/0.02m/fused/MOBILE
+13:29:05.928 [main] DEBUG LocationTest - DetectedActivity [type=STILL, confidence=54]
+13:29:06.524 [main] INFO  LocationTest - Gps count = total=30/used=4 - -
+13:29:07.527 [main] INFO  LocationTest - Gps count = total=31/used=4 - -
+13:29:07.553 [main] DEBUG LocationTest - 03/02 13:29:07  1989/356.495ac/0.01m/fused/MOBILE
+13:29:09.553 [main] DEBUG LocationTest - 03/02 13:29:09  2001/356.495ac/0.00m/fused/MOBILE
+13:29:11.550 [main] DEBUG LocationTest - 03/02 13:29:11  1996/356.495ac/0.00m/fused/MOBILE
+13:29:12.558 [main] DEBUG LocationTest - 03/02 13:29:12  1004/356.495ac/0.00m/fused/MOBILE
+13:29:13.523 [main] INFO  LocationTest - Gps count = total=30/used=3 - -
+13:29:14.528 [main] INFO  LocationTest - Gps count = total=30/used=2 - -
+13:29:14.546 [main] DEBUG LocationTest - 03/02 13:29:14  1996/356.495ac/0.00m/fused/MOBILE
+13:29:15.527 [main] INFO  LocationTest - Gps count = total=29/used=1 - -
+13:29:15.566 [main] DEBUG LocationTest - 03/02 13:29:15  1016/356.495ac/0.00m/fused/MOBILE
+13:29:16.526 [main] INFO  LocationTest - Gps count = total=31/used=1 - -
+13:29:16.562 [main] DEBUG LocationTest - 03/02 13:29:16  993/356.495ac/0.00m/fused/MOBILE
+13:29:18.559 [main] DEBUG LocationTest - 03/02 13:29:18  1998/356.495ac/0.00m/fused/MOBILE
+13:29:19.528 [main] INFO  LocationTest - Gps count = total=31/used=2 - -
+13:29:19.557 [main] DEBUG LocationTest - 03/02 13:29:19  1001/356.495ac/0.00m/fused/MOBILE
+13:29:20.561 [main] DEBUG LocationTest - 03/02 13:29:20  1003/356.495ac/0.13m/fused/MOBILE
+13:29:21.533 [main] INFO  LocationTest - Gps count = total=31/used=5 - -
+13:29:22.557 [main] DEBUG LocationTest - 03/02 13:29:22  1994/356.495ac/0.25m/fused/MOBILE
+13:29:23.557 [main] DEBUG LocationTest - 03/02 13:29:23  996/356.495ac/0.08m/fused/MOBILE
+13:29:24.540 [main] INFO  LocationTest - Gps count = total=31/used=7 - -
+13:29:24.575 [main] DEBUG LocationTest - 03/02 13:29:24  1027/354.978ac/0.29m/fused/MOBILE
+13:29:25.547 [main] INFO  LocationTest - Gps count = total=30/used=9 - -
+13:29:25.578 [main] DEBUG LocationTest - 03/02 13:29:25  1003/113.775ac/0.43m/fused/MOBILE
+13:29:26.550 [main] INFO  LocationTest - Gps count = total=30/used=13 - -
+13:29:27.542 [main] INFO  LocationTest - Gps count = total=31/used=15 - -
+13:29:27.563 [main] DEBUG LocationTest - 03/02 13:29:27  1984/51.578ac/0.90m/fused/MOBILE
+13:29:28.543 [main] INFO  LocationTest - Gps count = total=31/used=16 - -
+13:29:29.546 [main] INFO  LocationTest - Gps count = total=31/used=17 - -
+13:29:29.575 [main] DEBUG LocationTest - 03/02 13:29:29  2008/27.306ac/1.67m/fused/MOBILE
+13:29:31.563 [main] DEBUG LocationTest - 03/02 13:29:31  1991/18.204ac/4.23m/fused/MOBILE
+13:29:33.560 [main] DEBUG LocationTest - 03/02 13:29:33  1996/13.653ac/3.18m/fused/MOBILE
+13:29:34.558 [main] DEBUG LocationTest - 03/02 13:29:34  1001/13.653ac/1.83m/fused/MOBILE
+13:29:35.458 [main] DEBUG LocationTest - DetectedActivity [type=IN_VEHICLE, confidence=40]
+13:29:36.558 [main] DEBUG LocationTest - 03/02 13:29:36  1997/16.687ac/4.59m/fused/MOBILE
+13:29:37.554 [main] DEBUG LocationTest - 03/02 13:29:37  996/18.204ac/2.38m/fused/MOBILE
+13:29:39.555 [main] DEBUG LocationTest - 03/02 13:29:39  1997/21.238ac/4.43m/fused/MOBILE
+13:29:40.019 [main] DEBUG LocationTest - DetectedActivity [type=IN_VEHICLE, confidence=54]
+13:29:41.555 [main] DEBUG LocationTest - 03/02 13:29:41  2003/21.238ac/3.18m/fused/MOBILE
+13:29:42.548 [main] DEBUG LocationTest - 03/02 13:29:42  997/19.721ac/0.22m/fused/MOBILE
+13:29:43.631 [main] DEBUG LocationTest - 03/02 13:29:43  1084/19.228ac/0.76m/fused/MOBILE
+13:29:44.547 [main] DEBUG LocationTest - DetectedActivity [type=IN_VEHICLE, confidence=62]
+13:29:45.559 [main] DEBUG LocationTest - 03/02 13:29:45  1927/19.721ac/0.66m/fused/MOBILE
+13:29:46.567 [main] DEBUG LocationTest - 03/02 13:29:46  1003/21.238ac/0.12m/fused/MOBILE
+13:29:47.537 [main] INFO  LocationTest - Gps count = total=30/used=16 - -
+13:29:48.541 [main] INFO  LocationTest - Gps count = total=32/used=16 - -
+13:29:48.563 [main] DEBUG LocationTest - 03/02 13:29:48  1999/22.755ac/0.18m/fused/MOBILE
+13:29:50.540 [main] DEBUG LocationTest - 03/02 13:29:50  1978/21.238ac/1.54m/fused/MOBILE
+13:29:51.299 [main] INFO  LocationTest - unregisterGnssStatusCallback
+13:29:51.300 [main] INFO  LocationTest - stopFusedLocationUpdate
+13:29:51.310 [main] INFO  LocationTest - stopActivityRecognition
+13:29:51.314 [main] DEBUG LocationTest - ----------onDestroy()
+13:29:51.314 [main] DEBUG LocationTest - ----------------------------------------------------------------------

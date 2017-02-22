@@ -1,0 +1,112 @@
+0:38:45.761 [main] DEBUG LocationTest - ----------------------------------------------------------------------
+10:38:45.762 [main] DEBUG LocationTest - ----------onCreate() Nexus 5X
+10:38:45.791 [main] INFO  LocationTest - registerGnssStatusCallback
+10:38:45.946 [main] INFO  LocationTest - doGrantedLocationUpdate -- plat
+10:38:45.946 [main] INFO  LocationTest - MainActivity
+10:38:45.946 [main] DEBUG LocationTest - MainActivity
+10:38:45.950 [main] INFO  LocationTest - startPlatformLocationUpdate
+10:38:45.954 [main] INFO  LocationTest - GPS: minTime=1000/ minDistance:1.0 --- Network: minTime=1000/ minDistance:1.0
+10:38:45.955 [main] INFO  LocationTest - startActivityRecognition
+10:38:46.003 [main] DEBUG LocationTest - DetectedActivity [type=TILTING, confidence=100]
+10:38:46.011 [main] DEBUG LocationTest - DetectedActivity [type=ON_FOOT, confidence=80]
+10:38:47.969 [main] INFO  LocationTest - Gps count = total=20/used=0 - -
+10:38:48.778 [main] DEBUG LocationTest - 02/27 10:38:48  -- elapsed:1488159528775 / acc:50.0 - - plat (net=WIFI)
+10:39:02.065 [main] DEBUG LocationTest - DetectedActivity [type=ON_FOOT, confidence=80]
+10:39:18.146 [main] DEBUG LocationTest - DetectedActivity [type=ON_FOOT, confidence=80]
+10:39:18.959 [main] INFO  LocationTest - Gps count = total=19/used=0 - -
+10:39:19.961 [main] INFO  LocationTest - Gps count = total=20/used=0 - -
+10:39:31.054 [main] DEBUG LocationTest - 02/27 10:39:31  -- elapsed:42268 / acc:50.0 - - plat (net=WIFI)
+10:39:31.100 [main] DEBUG LocationTest - DetectedActivity [type=ON_FOOT, confidence=80]
+10:39:37.959 [main] INFO  LocationTest - Gps count = total=20/used=1 - -
+10:39:38.672 [main] INFO  LocationTest - Gps count = total=20/used=2 - -
+10:39:39.964 [main] INFO  LocationTest - Gps count = total=20/used=4 - -
+10:39:40.577 [main] INFO  LocationTest - Gps count = total=19/used=5 - -
+10:39:41.594 [main] DEBUG LocationTest - 02/27 10:39:41  -- elapsed:10544 / acc:19.0 - - plat (net=WIFI)
+10:39:41.607 [main] INFO  LocationTest - Gps count = total=19/used=6 - -
+10:39:42.598 [main] DEBUG LocationTest - 02/27 10:39:42  -- elapsed:1006 / acc:19.0 - - plat (net=WIFI)
+10:39:43.603 [main] DEBUG LocationTest - 02/27 10:39:43  -- elapsed:1005 / acc:20.0 - - plat (net=WIFI)
+10:39:43.630 [main] INFO  LocationTest - Gps count = total=19/used=7 - -
+10:39:44.607 [main] DEBUG LocationTest - 02/27 10:39:44  -- elapsed:1005 / acc:22.0 - - plat (net=WIFI)
+10:39:45.596 [main] DEBUG LocationTest - 02/27 10:39:45  -- elapsed:989 / acc:23.0 - - plat (net=WIFI)
+10:39:46.605 [main] DEBUG LocationTest - 02/27 10:39:46  -- elapsed:1009 / acc:26.0 - - plat (net=WIFI)
+10:39:47.234 [main] DEBUG LocationTest - 02/27 10:39:47  -- elapsed:630 / acc:26.0 - - plat (net=WIFI)
+10:39:47.263 [main] DEBUG LocationTest - DetectedActivity [type=ON_FOOT, confidence=80]
+10:39:48.583 [main] DEBUG LocationTest - 02/27 10:39:48  -- elapsed:1350 / acc:30.0 - - plat (net=MOBILE)
+10:39:49.592 [main] DEBUG LocationTest - 02/27 10:39:49  -- elapsed:1009 / acc:27.0 - - plat (net=MOBILE)
+10:39:50.584 [main] DEBUG LocationTest - 02/27 10:39:50  -- elapsed:989 / acc:24.0 - - plat (net=MOBILE)
+10:39:51.589 [main] INFO  LocationTest - Gps count = total=19/used=8 - -
+10:39:51.595 [main] DEBUG LocationTest - 02/27 10:39:51  -- elapsed:1012 / acc:29.0 - - plat (net=MOBILE)
+10:39:52.611 [main] DEBUG LocationTest - 02/27 10:39:52  -- elapsed:1014 / acc:28.0 - - plat (net=MOBILE)
+10:39:53.607 [main] DEBUG LocationTest - 02/27 10:39:53  -- elapsed:997 / acc:24.0 - - plat (net=MOBILE)
+10:39:54.582 [main] INFO  LocationTest - Gps count = total=19/used=9 - -
+10:39:55.017 [main] DEBUG LocationTest - 02/27 10:39:55  -- elapsed:1411 / acc:37.0 - - plat (net=MOBILE)
+10:39:56.024 [main] DEBUG LocationTest - 02/27 10:39:56  -- elapsed:1006 / acc:25.0 - - plat (net=MOBILE)
+10:39:56.040 [main] INFO  LocationTest - Gps count = total=20/used=9 - -
+10:39:57.021 [main] DEBUG LocationTest - 02/27 10:39:57  -- elapsed:998 / acc:24.0 - - plat (net=MOBILE)
+10:39:58.035 [main] DEBUG LocationTest - 02/27 10:39:58  -- elapsed:1014 / acc:21.0 - - plat (net=MOBILE)
+10:39:59.022 [main] DEBUG LocationTest - 02/27 10:39:59  -- elapsed:985 / acc:19.0 - - plat (net=MOBILE)
+10:40:00.014 [main] INFO  LocationTest - Gps count = total=20/used=8 - -
+10:40:00.018 [main] DEBUG LocationTest - 02/27 10:40:00  -- elapsed:999 / acc:16.0 - - plat (net=MOBILE)
+10:40:01.041 [main] INFO  LocationTest - Gps count = total=20/used=9 - -
+10:40:02.049 [main] DEBUG LocationTest - 02/27 10:40:02  -- elapsed:2028 / acc:15.0 - - plat (net=MOBILE)
+10:40:02.744 [main] DEBUG LocationTest - DetectedActivity [type=ON_FOOT, confidence=80]
+10:40:03.049 [main] DEBUG LocationTest - 02/27 10:40:03  -- elapsed:997 / acc:14.0 - - plat (net=MOBILE)
+10:40:04.048 [main] DEBUG LocationTest - 02/27 10:40:04  -- elapsed:1003 / acc:13.0 - - plat (net=MOBILE)
+10:40:05.043 [main] DEBUG LocationTest - 02/27 10:40:05  -- elapsed:996 / acc:13.0 - - plat (net=MOBILE)
+10:40:06.058 [main] DEBUG LocationTest - 02/27 10:40:06  -- elapsed:1011 / acc:11.0 - - plat (net=MOBILE)
+10:40:07.046 [main] INFO  LocationTest - Gps count = total=21/used=8 - -
+10:40:07.050 [main] DEBUG LocationTest - 02/27 10:40:07  -- elapsed:997 / acc:11.0 - - plat (net=MOBILE)
+10:40:08.057 [main] INFO  LocationTest - Gps count = total=21/used=9 - -
+10:40:08.063 [main] DEBUG LocationTest - 02/27 10:40:08  -- elapsed:1011 / acc:13.0 - - plat (net=MOBILE)
+10:40:08.989 [main] DEBUG LocationTest - 02/27 10:40:08  -- elapsed:928 / acc:13.0 - - plat (net=MOBILE)
+10:40:09.066 [main] DEBUG LocationTest - 02/27 10:40:09  -- elapsed:76 / acc:14.0 - - plat (net=MOBILE)
+10:40:10.075 [main] DEBUG LocationTest - 02/27 10:40:10  -- elapsed:1008 / acc:15.0 - - plat (net=MOBILE)
+10:40:11.062 [main] DEBUG LocationTest - 02/27 10:40:11  -- elapsed:987 / acc:13.0 - - plat (net=MOBILE)
+10:40:12.069 [main] INFO  LocationTest - Gps count = total=21/used=8 - -
+10:40:12.074 [main] DEBUG LocationTest - 02/27 10:40:12  -- elapsed:1013 / acc:14.0 - - plat (net=MOBILE)
+10:40:13.054 [main] INFO  LocationTest - Gps count = total=21/used=9 - -
+10:40:13.078 [main] DEBUG LocationTest - 02/27 10:40:13  -- elapsed:1002 / acc:15.0 - - plat (net=MOBILE)
+10:40:14.033 [main] INFO  LocationTest - Gps count = total=21/used=8 - -
+10:40:14.040 [main] DEBUG LocationTest - 02/27 10:40:14  -- elapsed:963 / acc:18.0 - - plat (net=MOBILE)
+10:40:15.048 [main] INFO  LocationTest - Gps count = total=21/used=9 - -
+10:40:15.053 [main] DEBUG LocationTest - 02/27 10:40:15  -- elapsed:1014 / acc:19.0 - - plat (net=MOBILE)
+10:40:16.051 [main] INFO  LocationTest - Gps count = total=21/used=8 - -
+10:40:16.084 [main] DEBUG LocationTest - 02/27 10:40:16  -- elapsed:1031 / acc:15.0 - - plat (net=MOBILE)
+10:40:17.049 [main] DEBUG LocationTest - 02/27 10:40:17  -- elapsed:963 / acc:10.0 - - plat (net=MOBILE)
+10:40:18.057 [main] INFO  LocationTest - Gps count = total=21/used=9 - -
+10:40:18.060 [main] DEBUG LocationTest - 02/27 10:40:18  -- elapsed:1014 / acc:8.0 - - plat (net=MOBILE)
+10:40:18.850 [main] DEBUG LocationTest - DetectedActivity [type=ON_FOOT, confidence=80]
+10:40:20.046 [main] DEBUG LocationTest - 02/27 10:40:20  -- elapsed:1983 / acc:5.0 - - plat (net=MOBILE)
+10:40:22.045 [main] DEBUG LocationTest - 02/27 10:40:22  -- elapsed:1997 / acc:6.0 - - plat (net=MOBILE)
+10:40:24.049 [main] DEBUG LocationTest - 02/27 10:40:24  -- elapsed:2002 / acc:6.0 - - plat (net=MOBILE)
+10:40:25.045 [main] DEBUG LocationTest - 02/27 10:40:25  -- elapsed:1001 / acc:6.0 - - plat (net=MOBILE)
+10:40:25.074 [main] INFO  LocationTest - Gps count = total=21/used=8 - -
+10:40:26.022 [main] INFO  LocationTest - Gps count = total=21/used=9 - -
+10:40:26.044 [main] DEBUG LocationTest - 02/27 10:40:26  -- elapsed:1000 / acc:7.0 - - plat (net=MOBILE)
+10:40:28.043 [main] DEBUG LocationTest - 02/27 10:40:28  -- elapsed:1999 / acc:6.0 - - plat (net=MOBILE)
+10:40:28.423 [main] DEBUG LocationTest - DetectedActivity [type=ON_FOOT, confidence=80]
+10:40:28.475 [main] DEBUG LocationTest - DetectedActivity [type=ON_FOOT, confidence=80]
+10:40:30.044 [main] DEBUG LocationTest - 02/27 10:40:30  -- elapsed:1993 / acc:5.0 - - plat (net=MOBILE)
+10:40:31.037 [main] DEBUG LocationTest - 02/27 10:40:31  -- elapsed:999 / acc:5.0 - - plat (net=MOBILE)
+10:40:31.295 [main] DEBUG LocationTest - 02/27 10:40:31  -- elapsed:261 / acc:5.0 - - plat (net=MOBILE)
+10:40:32.027 [main] DEBUG LocationTest - 02/27 10:40:32  -- elapsed:732 / acc:5.0 - - plat (net=WIFI)
+10:40:32.047 [main] INFO  LocationTest - Gps count = total=20/used=9 - -
+10:40:33.023 [main] INFO  LocationTest - Gps count = total=21/used=9 - -
+10:40:34.036 [main] DEBUG LocationTest - 02/27 10:40:34  -- elapsed:2004 / acc:6.0 - - plat (net=WIFI)
+10:40:37.042 [main] DEBUG LocationTest - 02/27 10:40:37  -- elapsed:3010 / acc:6.0 - - plat (net=WIFI)
+10:40:38.037 [main] DEBUG LocationTest - 02/27 10:40:38  -- elapsed:994 / acc:6.0 - - plat (net=WIFI)
+10:40:39.031 [main] INFO  LocationTest - Gps count = total=21/used=8 - -
+10:40:39.035 [main] DEBUG LocationTest - 02/27 10:40:39  -- elapsed:999 / acc:6.0 - - plat (net=WIFI)
+10:40:40.033 [main] INFO  LocationTest - Gps count = total=21/used=9 - -
+10:40:40.055 [main] DEBUG LocationTest - 02/27 10:40:40  -- elapsed:1017 / acc:6.0 - - plat (net=WIFI)
+10:40:41.068 [main] DEBUG LocationTest - 02/27 10:40:41  -- elapsed:1014 / acc:6.0 - - plat (net=WIFI)
+10:40:42.052 [main] DEBUG LocationTest - 02/27 10:40:42  -- elapsed:984 / acc:6.0 - - plat (net=WIFI)
+10:40:43.045 [main] DEBUG LocationTest - 02/27 10:40:43  -- elapsed:995 / acc:6.0 - - plat (net=WIFI)
+10:40:44.043 [main] DEBUG LocationTest - 02/27 10:40:44  -- elapsed:998 / acc:6.0 - - plat (net=WIFI)
+10:40:44.536 [main] DEBUG LocationTest - DetectedActivity [type=ON_FOOT, confidence=80]
+10:40:45.047 [main] DEBUG LocationTest - 02/27 10:40:45  -- elapsed:1001 / acc:7.0 - - plat (net=WIFI)
+10:40:46.037 [main] DEBUG LocationTest - 02/27 10:40:46  -- elapsed:993 / acc:7.0 - - plat (net=WIFI)
+10:40:46.187 [main] INFO  LocationTest - unregisterGnssStatusCallback
+10:40:46.188 [main] INFO  LocationTest - stopFusedLocationUpdate
+10:40:46.194 [main] INFO  LocationTest - stopActivityRecognition
+10:40:46.205 [main] DEBUG LocationTest - ----------onDestroy()

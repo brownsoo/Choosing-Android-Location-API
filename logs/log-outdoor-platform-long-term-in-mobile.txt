@@ -1,0 +1,52 @@
+09:32:32.252 [main] INFO  LocationTest - startPlatformLocationUpdate
+09:32:32.254 [main] INFO  LocationTest - GPS: minTime=1000/ minDistance:1.0 --- Network: minTime=1000/ minDistance:1.0
+09:32:32.692 [main] INFO  LocationTest - Gps count = total=19/used=7 - -
+09:32:33.359 [main] INFO  LocationTest - Gps count = total=18/used=1 - -
+09:32:33.376 [main] DEBUG LocationTest - 02/27 09:32:33  -- elapsed:2570 / acc:4.0 - - plat (net=MOBILE)
+09:32:34.706 [main] INFO  LocationTest - Gps count = total=18/used=7 - -
+09:32:34.725 [main] DEBUG LocationTest - 02/27 09:32:34  -- elapsed:1352 / acc:5.0 - - plat (net=MOBILE)
+09:32:35.696 [main] INFO  LocationTest - Gps count = total=19/used=7 - -
+09:32:35.709 [main] DEBUG LocationTest - 02/27 09:32:35  -- elapsed:983 / acc:4.0 - - plat (net=MOBILE)
+09:32:36.698 [main] DEBUG LocationTest - 02/27 09:32:36  -- elapsed:986 / acc:5.0 - - plat (net=MOBILE)
+09:32:37.708 [main] DEBUG LocationTest - 02/27 09:32:37  -- elapsed:1009 / acc:5.0 - - plat (net=MOBILE)
+09:32:38.702 [main] DEBUG LocationTest - 02/27 09:32:38  -- elapsed:997 / acc:6.0 - - plat (net=MOBILE)
+09:32:39.692 [main] DEBUG LocationTest - 02/27 09:32:39  -- elapsed:989 / acc:6.0 - - plat (net=MOBILE)
+09:32:40.704 [main] DEBUG LocationTest - 02/27 09:32:40  -- elapsed:1012 / acc:6.0 - - plat (net=MOBILE)
+09:32:42.731 [main] DEBUG LocationTest - 02/27 09:32:42  -- elapsed:2025 / acc:6.0 - - plat (net=MOBILE)
+09:32:44.725 [main] DEBUG LocationTest - 02/27 09:32:44  -- elapsed:1993 / acc:6.0 - - plat (net=MOBILE)
+09:32:46.719 [main] DEBUG LocationTest - 02/27 09:32:46  -- elapsed:1998 / acc:6.0 - - plat (net=MOBILE)
+09:32:47.723 [main] DEBUG LocationTest - 02/27 09:32:47  -- elapsed:1002 / acc:6.0 - - plat (net=MOBILE)
+09:32:48.733 [main] DEBUG LocationTest - 02/27 09:32:48  -- elapsed:1012 / acc:6.0 - - plat (net=MOBILE)
+09:32:49.734 [main] DEBUG LocationTest - 02/27 09:32:49  -- elapsed:999 / acc:6.0 - - plat (net=MOBILE)
+09:32:50.732 [main] DEBUG LocationTest - 02/27 09:32:50  -- elapsed:998 / acc:6.0 - - plat (net=MOBILE)
+09:32:51.743 [main] DEBUG LocationTest - 02/27 09:32:51  -- elapsed:1011 / acc:6.0 - - plat (net=MOBILE)
+09:32:52.737 [main] DEBUG LocationTest - 02/27 09:32:52  -- elapsed:997 / acc:6.0 - - plat (net=MOBILE)
+09:32:53.409 [main] DEBUG LocationTest - 02/27 09:32:53  -- elapsed:673 / acc:6.0 - - plat (net=MOBILE)
+09:32:53.721 [main] DEBUG LocationTest - 02/27 09:32:53  -- elapsed:310 / acc:5.0 - - plat (net=MOBILE)
+09:32:54.732 [main] DEBUG LocationTest - 02/27 09:32:54  -- elapsed:1012 / acc:5.0 - - plat (net=MOBILE)
+09:32:56.727 [main] DEBUG LocationTest - 02/27 09:32:56  -- elapsed:1990 / acc:5.0 - - plat (net=MOBILE)
+09:32:57.728 [main] DEBUG LocationTest - 02/27 09:32:57  -- elapsed:1004 / acc:5.0 - - plat (net=MOBILE)
+09:32:58.731 [main] DEBUG LocationTest - 02/27 09:32:58  -- elapsed:1001 / acc:4.0 - - plat (net=MOBILE)
+09:33:00.729 [main] DEBUG LocationTest - 02/27 09:33:00  -- elapsed:1994 / acc:4.0 - - plat (net=MOBILE)
+09:33:10.721 [main] DEBUG LocationTest - 02/27 09:33:10  -- elapsed:9994 / acc:4.0 - - plat (net=MOBILE)
+09:33:14.707 [main] INFO  LocationTest - Gps count = total=19/used=6 - -
+09:33:15.676 [main] DEBUG LocationTest - 02/27 09:33:15  -- elapsed:4962 / acc:4.0 - - plat (net=MOBILE)
+09:33:16.698 [main] INFO  LocationTest - Gps count = total=18/used=6 - -
+09:33:17.694 [main] INFO  LocationTest - Gps count = total=19/used=6 - -
+09:33:19.741 [main] INFO  LocationTest - Gps count = total=19/used=7 - -
+09:33:21.694 [main] INFO  LocationTest - Gps count = total=19/used=6 - -
+09:33:23.694 [main] INFO  LocationTest - Gps count = total=19/used=7 - -
+09:33:29.408 [main] INFO  LocationTest - Gps count = total=19/used=6 - -
+09:33:29.690 [main] INFO  LocationTest - Gps count = total=19/used=7 - -
+09:33:36.848 [main] DEBUG LocationTest - 02/27 09:33:36  -- elapsed:21171 / acc:4.0 - - plat (net=MOBILE)
+09:33:39.710 [main] DEBUG LocationTest - 02/27 09:33:39  -- elapsed:2858 / acc:5.0 - - plat (net=MOBILE)
+09:33:41.700 [main] DEBUG LocationTest - 02/27 09:33:41  -- elapsed:1991 / acc:5.0 - - plat (net=MOBILE)
+09:33:43.704 [main] DEBUG LocationTest - 02/27 09:33:43  -- elapsed:2003 / acc:5.0 - - plat (net=MOBILE)
+09:33:45.697 [main] DEBUG LocationTest - 02/27 09:33:45  -- elapsed:1993 / acc:4.0 - - plat (net=MOBILE)
+09:33:46.708 [main] DEBUG LocationTest - 02/27 09:33:46  -- elapsed:1013 / acc:4.0 - - plat (net=MOBILE)
+09:33:47.708 [main] DEBUG LocationTest - 02/27 09:33:47  -- elapsed:1000 / acc:4.0 - - plat (net=MOBILE)
+09:33:48.706 [main] DEBUG LocationTest - 02/27 09:33:48  -- elapsed:1000 / acc:4.0 - - plat (net=MOBILE)
+09:33:49.702 [main] DEBUG LocationTest - 02/27 09:33:49  -- elapsed:995 / acc:3.0 - - plat (net=MOBILE)
+09:33:50.705 [main] DEBUG LocationTest - 02/27 09:33:50  -- elapsed:1001 / acc:4.0 - - plat (net=MOBILE)
+09:33:51.731 [main] DEBUG LocationTest - 02/27 09:33:51  -- elapsed:1010 / acc:4.0 - - plat (net=MOBILE)
+09:33:53.699 [main] DEBUG LocationTest - 02/27 09:33:53  -- elapsed:1985 / acc:5.0 - - plat (net=MOBILE)
