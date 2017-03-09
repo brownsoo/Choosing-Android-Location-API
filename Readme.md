@@ -6,6 +6,4 @@
 **테스트 앱 - LocationUpdateTest** 
 
 실행하려면, 
-- Google API 프로젝트를 생성하여 google-services.json 를 app 모듈에 포함해야 합니다.
-- Google Map key 가 필요합니다.
-
+- Google Map key 가 필요합니다. strings_keys.xml 넣어주세요.
