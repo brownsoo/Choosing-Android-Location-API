@@ -12,7 +12,6 @@ import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
@@ -384,12 +383,12 @@ public class MainActivity extends AppCompatActivity implements
         if (stable) {
             pos = stablePositions;
             lines = polyLines;
-            color = Color.RED;
+            color = 0x00ff00;
         }
         else {
             pos = positions;
             lines = polyLinesStabilized;
-            color = Color.GREEN;
+            color = 0x0000ff;
         }
 
         if (pos.size() > MAX_LOCATION_COUNT) {
