@@ -923,9 +923,9 @@ public class MainActivity extends AppCompatActivity implements
 
                 // Stabilize data
                 if(stabilizer.isStableLocation(location)) {
-                    stablePositions.add(new LatLng(location.getLatitude()+0.00005, location.getLongitude()));
+                    stablePositions.add(new LatLng(location.getLatitude()+0.00003, location.getLongitude()+0.00003));
                     drawLine(true);
-                    drawMarker(location.getLatitude(), location.getLongitude()+0.00005, true);
+                    drawMarker(location.getLatitude()+0.00003, location.getLongitude()+0.00003, true);
                 }
             }
         });
