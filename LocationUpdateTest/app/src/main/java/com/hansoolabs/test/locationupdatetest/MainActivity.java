@@ -53,6 +53,7 @@ import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.GoogleMapOptions;
 import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.Marker;
@@ -109,7 +110,33 @@ public class MainActivity extends AppCompatActivity implements
     private int fusedInterval = 1000;
     private int fusedFastestInterval = 1000;
     private static final int WHAT_MESSAGE_LOOP = 100;
-    private static final int MAX_POLYLINE_POINTS_COUNT = 20;
+    private static final int MAX_LOCATION_COUNT = 20;
+
+    private static final int FINE_ACCURACY_THRESHOLD = 10;
+    private static final int BAD_ACCURACY_THRESHOLD = 150;
+    private static final int SPEED_THRESHOLD = 30; // 30m/s
+    private static final int SPEED_TIME_CLUE = 10000;// 10 sec
+    private static final int SPEED_CHECKABLE_COUNT = 3;
+    private static final int DISTANCE_THRESHOLD = 200; // meter
+
+    private enum Level {
+        Terrible(0),
+        Bad(1),
+        Good(2),
+        Best(3);
+
+        private int value;
+
+        Level(int value) {
+            this.value = value;
+        }
+
+        public int value() {
+            return this.value;
+        }
+    }
+
+
 
     private TextView trace;
     private Logger logger;
@@ -124,15 +151,20 @@ public class MainActivity extends AppCompatActivity implements
     private boolean isLocationTrackingStarted = false;
     private int movingMapDelayCount = 0;
     private Marker marker;
+    private Marker markerStable;
     private String currentSource;
     private String dot = "";
     private ConnectivityManager cm;
     private int gpsTotalCount = 0;
     private int gpsUsedCount = 0;
     private Object gnssStatusCallback;
-    private LatLng prefLatLng;
+    private LatLng newLatlng;
+    private List<MyLocation> locations;
+    private List<List<MyLocation>> groups;
     private List<Polyline> polyLines;
+    private List<Polyline> polyLinesStabilized;
     private List<LatLng> positions;
+    private List<LatLng> stables;
     private ProgressBar progressBar;
 
 
@@ -157,6 +189,48 @@ public class MainActivity extends AppCompatActivity implements
     });
 
 
+    private class MyLocation {
+        Level level;
+        Location location;
+        long time;
+        float speed;
+
+        MyLocation(Location location, Level level) {
+            this.location = location;
+            this.level = level;
+            this.time = location.getTime();
+        }
+
+        float distanceFrom(MyLocation origin) {
+            try {
+                float[] results = new float[3];
+                Location.distanceBetween(
+                        origin.location.getLatitude(), origin.location.getLongitude(),
+                        location.getLatitude(), location.getLongitude(),
+                        results);
+
+                return results[0];
+            }
+            catch (Throwable e) {
+                //
+            }
+            return -1;
+        }
+
+        float speedFrom(MyLocation old) {
+
+            float distance = distanceFrom(old);
+            long interval = this.time - old.time;
+            float sec = interval / 1000f;
+
+            return distance / sec;
+        }
+
+        public boolean speedComparable(MyLocation old) {
+            return (this.time - old.time < SPEED_TIME_CLUE) && (this.time > old.time);
+        }
+    }
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -166,8 +240,12 @@ public class MainActivity extends AppCompatActivity implements
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
+        locations = new LinkedList<>();
+        groups = new LinkedList<>();
         positions = new LinkedList<>();
-        polyLines = new ArrayList<>();
+        stables = new LinkedList<>();
+        polyLines = new LinkedList<>();
+        polyLinesStabilized = new LinkedList<>();
 
         bus = new Bus(ThreadEnforcer.ANY);
         bus.register(this);
@@ -334,7 +412,12 @@ public class MainActivity extends AppCompatActivity implements
         this.googleMap = googleMap;
         this.marker = googleMap.addMarker(new MarkerOptions()
                 .position(seoul));
-        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 19));
+        this.markerStable = googleMap.addMarker(new MarkerOptions()
+                .position(seoul)
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE))
+        );
+
+        googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 18));
         googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
             @Override
             public void onMapClick(LatLng latLng) {
@@ -344,7 +427,7 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    private void drawMarker(double lat, double lon) {
+    private void drawMarker(double lat, double lon, boolean stabled) {
 
         if (movingMapDelayCount <= 0) {
             LatLngBounds bounds = new LatLngBounds(
@@ -353,16 +436,21 @@ public class MainActivity extends AppCompatActivity implements
             googleMap.animateCamera(CameraUpdateFactory.newLatLng(bounds.getCenter()));
         }
 
-        marker.setPosition(new LatLng(lat, lon));
+        if (stabled) {
+            markerStable.setPosition(new LatLng(lat, lon));
+        }
+        else {
+            marker.setPosition(new LatLng(lat, lon));
+        }
     }
 
-    private void drawLine(LatLng latlng) {
-        positions.add(latlng);
-        if (positions.size() > MAX_POLYLINE_POINTS_COUNT) {
+    private void drawLine() {
+
+        if (positions.size() > MAX_LOCATION_COUNT) {
             positions.remove(0);
         }
 
-        if (polyLines.size() > MAX_POLYLINE_POINTS_COUNT - 1) {
+        if (polyLines.size() > MAX_LOCATION_COUNT - 1) {
             polyLines.remove(0);
         }
 
@@ -560,8 +648,9 @@ public class MainActivity extends AppCompatActivity implements
     }
 
 
-    private void setAgentLocation(double latitude, double longitude) {
-        drawMarker(latitude, longitude);
+    private void setFirstLocation(double latitude, double longitude) {
+        drawMarker(latitude, longitude, true);
+        drawMarker(latitude, longitude, false);
     }
 
 
@@ -575,7 +664,7 @@ public class MainActivity extends AppCompatActivity implements
 
         Location location = LocationServices.FusedLocationApi.getLastLocation(googleApiClient);
         if (location != null) {
-            setAgentLocation(location.getLatitude(), location.getLongitude());
+            setFirstLocation(location.getLatitude(), location.getLongitude());
         }
 
         onConnectedAPIClient();
@@ -826,6 +915,19 @@ public class MainActivity extends AppCompatActivity implements
     };
 
 
+    private float distanceBetween(double lat0, double lon0, double lat1, double lon1) {
+        try {
+            float[] results = new float[3];
+            Location.distanceBetween(lat0, lon0, lat1, lon1, results);
+            return results[0];
+        }
+        catch (Throwable e) {
+            // pass
+        }
+        return -1;
+    }
+
+
     private void traceLocation(final Location location) {
         final long elapsed = System.currentTimeMillis() - receiveTime;
         receiveTime = System.currentTimeMillis();
@@ -839,19 +941,13 @@ public class MainActivity extends AppCompatActivity implements
             public void run() {
 
                 float distance = -1;
-                if (prefLatLng != null) {
-                    try {
-                        float[] results = new float[3];
-                        Location.distanceBetween(prefLatLng.latitude, prefLatLng.longitude, location.getLatitude(), location.getLongitude(), results);
-                        distance = results[0];
-                    }
-                    catch (Throwable e) {
-                        // pass
-                    }
+                if (newLatlng != null) {
+                    distance = distanceBetween(newLatlng.latitude, newLatlng.longitude,
+                            location.getLatitude(), location.getLongitude());
                 }
 
-                prefLatLng = new LatLng(location.getLatitude(), location.getLongitude());
-                String distanceString = String.format(Locale.US, "%.2f", distance);
+                newLatlng = new LatLng(location.getLatitude(), location.getLongitude());
+                String distanceString = String.format(Locale.US, "%.1f", distance);
 
                 SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd HH:mm:ss", Locale.US);
                 String text = dateFormat.format(
@@ -873,12 +969,22 @@ public class MainActivity extends AppCompatActivity implements
 
                 scrollToBottom(trace);
 
-                drawLine(prefLatLng);
-                drawMarker(location.getLatitude(), location.getLongitude());
+                // Draw raw data
+                positions.add(newLatlng);
+                drawLine();
+                drawMarker(location.getLatitude(), location.getLongitude(), false);
+
             }
         });
 
+        // Stabilize data
+        stabilizeData(location);
     }
+
+
+
+
+
 
     private String activeNetworkTypeName() {
         NetworkInfo activeNetwork = cm.getActiveNetworkInfo();
