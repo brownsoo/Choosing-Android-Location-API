@@ -7,3 +7,6 @@
 /build
 /captures
 .externalNativeBuild
+src/androidTest/java/com/hansoolabs/test/locationupdate/
+src/main/java/com/hansoolabs/test/locationupdate/
+src/test/java/com/hansoolabs/test/locationupdate/

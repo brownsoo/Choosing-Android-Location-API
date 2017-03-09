@@ -1,4 +1,4 @@
-package com.hansoolabs.test.locationupdatetest;
+package com.hansoolabs.test.locationupdate;
 
 import android.Manifest;
 import android.annotation.SuppressLint;
@@ -60,11 +60,12 @@ import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.Polyline;
 import com.google.android.gms.maps.model.PolylineOptions;
-import com.hansoolabs.test.locationupdatetest.events.EmailEvent;
-import com.hansoolabs.test.locationupdatetest.events.FusedIntervalEvent;
-import com.hansoolabs.test.locationupdatetest.events.OverlayEvent;
-import com.hansoolabs.test.locationupdatetest.events.SourceEvent;
-import com.hansoolabs.test.locationupdatetest.utils.ContextUtils;
+import com.hansoolabs.test.locationupdate.events.EmailEvent;
+import com.hansoolabs.test.locationupdate.events.FusedIntervalEvent;
+import com.hansoolabs.test.locationupdate.events.OverlayEvent;
+import com.hansoolabs.test.locationupdate.events.SourceEvent;
+import com.hansoolabs.test.locationupdate.utils.ContextUtils;
+import com.hansoolabs.test.locationupdate.utils.LocationStabilizer;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.squareup.otto.ThreadEnforcer;
@@ -112,32 +113,6 @@ public class MainActivity extends AppCompatActivity implements
     private static final int WHAT_MESSAGE_LOOP = 100;
     private static final int MAX_LOCATION_COUNT = 20;
 
-    private static final int FINE_ACCURACY_THRESHOLD = 10;
-    private static final int BAD_ACCURACY_THRESHOLD = 150;
-    private static final int SPEED_THRESHOLD = 30; // 30m/s
-    private static final int SPEED_TIME_CLUE = 10000;// 10 sec
-    private static final int SPEED_CHECKABLE_COUNT = 3;
-    private static final int DISTANCE_THRESHOLD = 200; // meter
-
-    private enum Level {
-        Terrible(0),
-        Bad(1),
-        Good(2),
-        Best(3);
-
-        private int value;
-
-        Level(int value) {
-            this.value = value;
-        }
-
-        public int value() {
-            return this.value;
-        }
-    }
-
-
-
     private TextView trace;
     private Logger logger;
     private Bus bus;
@@ -159,13 +134,12 @@ public class MainActivity extends AppCompatActivity implements
     private int gpsUsedCount = 0;
     private Object gnssStatusCallback;
     private LatLng newLatlng;
-    private List<MyLocation> locations;
-    private List<List<MyLocation>> groups;
     private List<Polyline> polyLines;
     private List<Polyline> polyLinesStabilized;
     private List<LatLng> positions;
-    private List<LatLng> stables;
+    private List<LatLng> stablePositions;
     private ProgressBar progressBar;
+    private LocationStabilizer stabilizer;
 
 
     private Handler handler = new Handler(new Handler.Callback() {
@@ -189,49 +163,6 @@ public class MainActivity extends AppCompatActivity implements
     });
 
 
-    private class MyLocation {
-        Level level;
-        Location location;
-        long time;
-        float speed;
-
-        MyLocation(Location location, Level level) {
-            this.location = location;
-            this.level = level;
-            this.time = location.getTime();
-        }
-
-        float distanceFrom(MyLocation origin) {
-            try {
-                float[] results = new float[3];
-                Location.distanceBetween(
-                        origin.location.getLatitude(), origin.location.getLongitude(),
-                        location.getLatitude(), location.getLongitude(),
-                        results);
-
-                return results[0];
-            }
-            catch (Throwable e) {
-                //
-            }
-            return -1;
-        }
-
-        float speedFrom(MyLocation old) {
-
-            float distance = distanceFrom(old);
-            long interval = this.time - old.time;
-            float sec = interval / 1000f;
-
-            return distance / sec;
-        }
-
-        public boolean speedComparable(MyLocation old) {
-            return (this.time - old.time < SPEED_TIME_CLUE) && (this.time > old.time);
-        }
-    }
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -240,12 +171,11 @@ public class MainActivity extends AppCompatActivity implements
         progressBar = (ProgressBar)findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 
-        locations = new LinkedList<>();
-        groups = new LinkedList<>();
         positions = new LinkedList<>();
-        stables = new LinkedList<>();
+        stablePositions = new LinkedList<>();
         polyLines = new LinkedList<>();
         polyLinesStabilized = new LinkedList<>();
+        stabilizer = new LocationStabilizer();
 
         bus = new Bus(ThreadEnforcer.ANY);
         bus.register(this);
@@ -427,16 +357,16 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    private void drawMarker(double lat, double lon, boolean stabled) {
+    private void drawMarker(double lat, double lon, boolean stable) {
 
-        if (movingMapDelayCount <= 0) {
+        if (movingMapDelayCount <= 0 && stable) {
             LatLngBounds bounds = new LatLngBounds(
                     new LatLng(lat - 1, lon - 1),
                     new LatLng(lat + 1, lon + 1));
             googleMap.animateCamera(CameraUpdateFactory.newLatLng(bounds.getCenter()));
         }
 
-        if (stabled) {
+        if (stable) {
             markerStable.setPosition(new LatLng(lat, lon));
         }
         else {
@@ -444,40 +374,55 @@ public class MainActivity extends AppCompatActivity implements
         }
     }
 
-    private void drawLine() {
+    private void drawLine(boolean stable) {
 
-        if (positions.size() > MAX_LOCATION_COUNT) {
-            positions.remove(0);
+        List<LatLng> pos;
+        List<Polyline> lines;
+        int color;
+
+        if (stable) {
+            pos = stablePositions;
+            lines = polyLines;
+            color = 0x00ff00;
+        }
+        else {
+            pos = positions;
+            lines = polyLinesStabilized;
+            color = 0x0000ff;
         }
 
-        if (polyLines.size() > MAX_LOCATION_COUNT - 1) {
-            polyLines.remove(0);
+        if (pos.size() > MAX_LOCATION_COUNT) {
+            pos.remove(0);
         }
 
-        if (positions.size() > 1) {
-            int length = positions.size() - 1;
-            int delta = 255 / length; Log.d(TAG, "delta --- " + delta);
+        if (lines.size() > MAX_LOCATION_COUNT - 1) {
+            lines.remove(0);
+        }
+
+        if (pos.size() > 1) {
+            int length = pos.size() - 1;
+            int delta = 255 / length;
             int alpha;
             int lineColor;
 
             for (int i = 0; i < length; i++) {
                 alpha = delta * (i+1);
-                lineColor = (alpha << 24) | (255 << 16);
-                if (polyLines.size() < i+1) {
+                lineColor = (alpha << 24) | color;
+                if (lines.size() < i+1) {
                     PolylineOptions options = new PolylineOptions()
                             .color(lineColor)
                             .width(5f);
-                    options.add(positions.get(i));
-                    options.add(positions.get(i+1));
+                    options.add(pos.get(i));
+                    options.add(pos.get(i+1));
                     Polyline line = googleMap.addPolyline(options);
-                    polyLines.add(line);
+                    lines.add(line);
                 }
                 else {
                     List<LatLng> list = new ArrayList<>();
-                    list.add(positions.get(i));
-                    list.add(positions.get(i+1));
-                    polyLines.get(i).setPoints(list);
-                    polyLines.get(i).setColor(lineColor);
+                    list.add(pos.get(i));
+                    list.add(pos.get(i+1));
+                    lines.get(i).setPoints(list);
+                    lines.get(i).setColor(lineColor);
                 }
             }
         }
@@ -971,14 +916,20 @@ public class MainActivity extends AppCompatActivity implements
 
                 // Draw raw data
                 positions.add(newLatlng);
-                drawLine();
+                drawLine(false);
                 drawMarker(location.getLatitude(), location.getLongitude(), false);
 
+
+                // Stabilize data
+                if(stabilizer.isStableLocation(location)) {
+                    stablePositions.add(new LatLng(location.getLatitude()+0.0001, location.getLongitude()));
+                    drawLine(true);
+                    drawMarker(location.getLatitude(), location.getLongitude()+0.0001, true);
+                }
             }
         });
 
-        // Stabilize data
-        stabilizeData(location);
+
     }
 
 

@@ -1,4 +1,4 @@
-package com.hansoolabs.test.locationupdatetest;
+package com.hansoolabs.test.locationupdate;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -9,10 +9,10 @@ import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.hansoolabs.test.locationupdatetest.events.EmailEvent;
-import com.hansoolabs.test.locationupdatetest.events.FusedIntervalEvent;
-import com.hansoolabs.test.locationupdatetest.events.OverlayEvent;
-import com.hansoolabs.test.locationupdatetest.events.SourceEvent;
+import com.hansoolabs.test.locationupdate.events.EmailEvent;
+import com.hansoolabs.test.locationupdate.events.FusedIntervalEvent;
+import com.hansoolabs.test.locationupdate.events.OverlayEvent;
+import com.hansoolabs.test.locationupdate.events.SourceEvent;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 

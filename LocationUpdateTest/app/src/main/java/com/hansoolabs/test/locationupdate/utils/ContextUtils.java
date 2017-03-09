@@ -1,4 +1,4 @@
-package com.hansoolabs.test.locationupdatetest.utils;
+package com.hansoolabs.test.locationupdate.utils;
 
 import android.content.Context;
 import android.net.ConnectivityManager;

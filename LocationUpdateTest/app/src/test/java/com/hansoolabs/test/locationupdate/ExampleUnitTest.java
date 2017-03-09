@@ -1,4 +1,4 @@
-package com.hansoolabs.test.locationupdatetest;
+package com.hansoolabs.test.locationupdate;
 
 import org.junit.Test;
 

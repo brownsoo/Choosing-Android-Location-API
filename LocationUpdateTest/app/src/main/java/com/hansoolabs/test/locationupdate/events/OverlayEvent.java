@@ -1,4 +1,4 @@
-package com.hansoolabs.test.locationupdatetest.events;
+package com.hansoolabs.test.locationupdate.events;
 
 /**
  *
