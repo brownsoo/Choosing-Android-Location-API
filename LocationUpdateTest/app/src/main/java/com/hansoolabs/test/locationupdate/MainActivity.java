@@ -344,7 +344,7 @@ public class MainActivity extends AppCompatActivity implements
                 .position(seoul));
         this.markerStable = googleMap.addMarker(new MarkerOptions()
                 .position(seoul)
-                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_ROSE))
+                .icon(BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_GREEN))
         );
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 18));
@@ -922,9 +922,9 @@ public class MainActivity extends AppCompatActivity implements
 
                 // Stabilize data
                 if(stabilizer.isStableLocation(location)) {
-                    stablePositions.add(new LatLng(location.getLatitude()+0.0001, location.getLongitude()));
+                    stablePositions.add(new LatLng(location.getLatitude()+0.00005, location.getLongitude()));
                     drawLine(true);
-                    drawMarker(location.getLatitude(), location.getLongitude()+0.0001, true);
+                    drawMarker(location.getLatitude(), location.getLongitude()+0.00005, true);
                 }
             }
         });
