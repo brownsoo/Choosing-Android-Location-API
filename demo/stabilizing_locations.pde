@@ -13,32 +13,30 @@ final int GROUPING_DISTANCE_THRESHOLD = 100;
 final int GROUPING_MINIMUM_COUNT = 3;
 final int GROUPING_ASSUME_BAD_COUNT = 3;
 
-final int DISTANCE_THRESHOLD = 300;
-final int DISTANCE_TIME_CLUE = 10;
+final color TERRIBLE_COLOR = 0xff880E4F;
+final color BAD_COLOR = 0xffF44336;
+final color GOOD_COLOR = 0xff40C4FF;
+final color BEST_COLOR = 0x7600E676;
+final color TEXT_COLOR = 0xff404040;
+final color SELECTED_COLOR = 0xff03A9F4;
 
-final color TERRIBLE_COLOR = #880E4F;
-final color BAD_COLOR = #F44336;
-final color GOOD_COLOR = #40C4FF;
-final color BEST_COLOR = #00E676;
-final color TEXT_COLOR = #404040;
-final color SELECTED_COLOR = #03A9F4;
-
-ArrayList<MyLocation> stableList;
-ArrayList<MyLocation> locationList;
-ArrayList<ArrayList<MyLocation>> regionList;
+ArrayList<MyLocation> stables;
+ArrayList<MyLocation> locations;
+ArrayList<ArrayList<MyLocation>> regions;
 int newLevel = GOOD;
+int elapsedSec = 0;
 
 void setup() {
 
-  size(600, 800);
+  size(600, 600);
   //pixelDensity(displayDensity());
   ellipseMode(CENTER);
   rectMode(CENTER);
   frameRate(10);
 
-  regionList = new ArrayList<ArrayList<MyLocation>>();
-  locationList = new ArrayList<MyLocation>();
-  stableList = new ArrayList<MyLocation>();
+  regions = new ArrayList<ArrayList<MyLocation>>();
+  locations = new ArrayList<MyLocation>();
+  stables = new ArrayList<MyLocation>();
 }
 
 void mousePressed() {
@@ -47,9 +45,9 @@ void mousePressed() {
 
 void keyPressed() {
   if (key == 'r') {
-    locationList.clear();
-    stableList.clear();
-    regionList.clear();
+    locations.clear();
+    stables.clear();
+    regions.clear();
     println("reset");
   }
 
@@ -79,6 +77,7 @@ color levelColor(int level) {
 void draw() {
 
   background(255);
+  elapsedSec = millis() / 1000;
 
   // Guide 
   fill(TEXT_COLOR);
@@ -98,22 +97,26 @@ void draw() {
   fill(TEXT_COLOR);
   text("r : reset", 10, 80);
 
-  text("locationList.size()=" + locationList.size(), 300, 20);
-  text("regionList.size()=" + regionList.size(), 300, 40);
-  text("Distance Threshold", 300, 60);
-  text("Used Location", 300, 80);
+  text("Speed Threshold=" + SPEED_THRESHOLD, 200, 20);
+  text("Regions count=" + regions.size(), 200, 40);
+  text("Group Distance Threshold=" + GROUPING_DISTANCE_THRESHOLD, 200, 60);
+  text("Usable Location", 200, 80);
+
+  text("Elapsed " + elapsedSec, 400, 20);
+  
   fill(10, 30);
   noStroke();
-  ellipse(290, 55, 30, 30);
+  ellipse(190, 55, 20, 20);
   fill(BEST_COLOR);
-  triangle(290-10, 70+10, 290, 70-8, 290+10, 70+10);
+  triangle(190-10, 75+10, 190, 75-8, 190+10, 75+10);
 
+  
 
   // draw points
-  int plen = locationList.size();
+  int plen = locations.size();
 
   for (int i=0; i<plen; i++) {
-    MyLocation p = locationList.get(i);
+    MyLocation p = locations.get(i);
     noStroke();
     fill(levelColor(p.level));
     if (i == plen - 1) {
@@ -126,27 +129,27 @@ void draw() {
 
     if (i>0) {
       stroke(50, 100);
-      line(locationList.get(i-1).x, locationList.get(i-1).y, p.x, p.y);
+      line(locations.get(i-1).x, locations.get(i-1).y, p.x, p.y);
       textSize(10);
       if (p.speed < SPEED_THRESHOLD) {
         fill(50, 50, 200);
       } else {
         fill(200, 50, 0);
       }
-      text("speed:" + p.speed, p.x, p.y + 10);
+      text("speed:" + round(p.speed), p.x, p.y + 10);
     }
   }
 
-  // draw regionList
-  int glen = regionList.size();
+  // draw regions
+  int glen = regions.size();
   for (int i=0; i<glen; i++) {
-    ArrayList<MyLocation> group = regionList.get(i); 
-    int regionListize = group.size();
+    ArrayList<MyLocation> group = regions.get(i); 
+    int regionsize = group.size();
     //fill(255, 204, 0, 40);
     fill(random(100, 255), 40);
     noStroke();
     beginShape();
-    for (int j=0; j<regionListize; j++) {
+    for (int j=0; j<regionsize; j++) {
       if (group.get(j).level > TERRIBLE) {
         vertex(group.get(j).x, group.get(j).y);
       }
@@ -155,30 +158,29 @@ void draw() {
   }
 
   // draw stable mark
-  int slen = stableList.size();
+  int slen = stables.size();
   for (int i=0; i<slen; i++) {
     noStroke();
     fill(BEST_COLOR);
-    MyLocation p = stableList.get(i);
+    MyLocation p = stables.get(i);
     triangle(p.x-10, p.y+10, p.x, p.y-8, p.x+10, p.y+10);
   }
 }
 
 void addNewMyLocation(int px, int py, int level) {
   MyLocation p;
-  if (locationList.size() < 1) {
-    p = new MyLocation(px, py, millis());
-  } else {
-    int addTime = 1000;//(int)random(1000, 5000);
-    p = new MyLocation(px, py, locationList.get(locationList.size()-1).time + addTime);
-  }
+  //if (locations.size() < 1) {
+    p = new MyLocation(px, py, elapsedSec * 1000);
+  //} 
+  //else {
+  //  int addTime = 1000;//(int)random(1000, 5000);
+  //  p = new MyLocation(px, py, locations.get(locations.size()-1).time + addTime);
+  //}
 
   p.level = level;
-  println("New position", p.x, p.y, p.time, p.level);
+  println("New position "+ p.x +"/"+ p.y +"  "+ p.time +"  "+ p.level);
 
-  int t = millis();
   checkLocationLevel(p);
-  println("stabilize time=", millis() - t);
 }
 
 
@@ -187,13 +189,13 @@ void checkLocationLevel(MyLocation income) {
   if (income.level == TERRIBLE || income.level == BEST) {
     // obvious level
   } 
-  else if (locationList.size() + 1 >= SPEED_CHECKABLE_COUNT) {
+  else if (locations.size() + 1 >= SPEED_CHECKABLE_COUNT) {
     // ## check level by speed
     MyLocation last = null;
-    int plen = locationList.size();  
+    int plen = locations.size();  
     for (int i=plen-1; i>=0; i--) {
-      if (locationList.get(i).level > TERRIBLE) {
-        last = locationList.get(i);
+      if (locations.get(i).level > TERRIBLE) {
+        last = locations.get(i);
         break;
       }
     }
@@ -215,9 +217,9 @@ void checkLocationLevel(MyLocation income) {
 
 
   // # Add new position to history
-  locationList.add(income);
-  if (locationList.size() > MAX_LOCATION_COUNT) { // Limit size
-    locationList.remove(0);
+  locations.add(income);
+  if (locations.size() > MAX_LOCATION_COUNT) { // Limit size
+    locations.remove(0);
   }
 
 
@@ -229,34 +231,34 @@ void checkLocationLevel(MyLocation income) {
   // # Stable position mark
   // We can not disgard the first usable location,
   // because the orders around me have to be shown as soon as. 
-  if (/*locationList.size() > SPEED_CHECKABLE_COUNT && */income.level > BAD) {
-    stableList.add(income.clone());
+  if (/*locations.size() > SPEED_CHECKABLE_COUNT && */income.level > BAD) {
+    stables.add(income.clone());
   }
-  if (stableList.size() > MAX_LOCATION_COUNT) { // Limit size
-    stableList.remove(0);
+  if (stables.size() > MAX_LOCATION_COUNT) { // Limit size
+    stables.remove(0);
   }
 }
 
 
 void checkLocationRegion() {
   // ## start grouping
-  regionList.clear();
-  if (locationList.size() >= GROUPING_MINIMUM_COUNT) {
+  regions.clear();
+  if (locations.size() >= GROUPING_MINIMUM_COUNT) {
     // first group
     ArrayList<MyLocation> g = new ArrayList<MyLocation>();
-    g.add(locationList.get(0));
-    regionList.add(g);
+    g.add(locations.get(0));
+    regions.add(g);
 
-    int loLength = locationList.size();
+    int loLength = locations.size();
     for (int i=1; i < loLength; i++) {
-      MyLocation next = locationList.get(i);
+      MyLocation next = locations.get(i);
       //println("------- start inserting position=", i);
 
       boolean added = false;
       // check affordance
-      for (int j=0; j<regionList.size(); j++) {  
+      for (int j=0; j<regions.size(); j++) {  
 
-        ArrayList<MyLocation> group = regionList.get(j);
+        ArrayList<MyLocation> group = regions.get(j);
         int groupLength = group.size();
         for (int k=groupLength - 1; k >= 0; k--) {
           MyLocation m = group.get(k);
@@ -279,34 +281,19 @@ void checkLocationRegion() {
         // New group
         g = new ArrayList<MyLocation>();
         g.add(next);
-        regionList.add(g);
-        //println("new affordance group=", regionList.size()-1);
+        regions.add(g);
+        //println("new affordance group=", regions.size()-1);
       }
     } // grouping
 
-    // find big size
-    //int gMaxSize = 0;
-    int gLength = regionList.size();
-    //for (int i=0; i<gLength; i++) {
-    //  int size = regionList.get(i).size();
-    //  if (size > gMaxSize) {
-    //    gMaxSize = size;
-    //  }
-    //}
-
-    // find big regionList and switch level between GOOD and BAD
+    
+    int gLength = regions.size();
     for (int i=0; i<gLength; i++) {
-      ArrayList<MyLocation> group = regionList.get(i);
-      int regionListize = group.size();
-      //if (regionListize >= gMaxSize) {
-      //  for (int j=0; j<regionListize; j++) {
-      //    if (group.get(j).level == BAD) group.get(j).level = GOOD;
-      //  }
-      //} 
-      //else 
-      if (regionListize < GROUPING_ASSUME_BAD_COUNT) { // If the group has less than N locations, we assume it is bad group.
-        for (int j=0; j<regionListize; j++) {
-          if (group.get(j).level == GOOD) group.get(j).level = BAD;
+      ArrayList<MyLocation> region = regions.get(i);
+      int regionSize = region.size();
+      if (regionSize < GROUPING_ASSUME_BAD_COUNT) { // If the group has less than N locations, we assume it is bad group.
+        for (int j=0; j<regionSize; j++) {
+          if (region.get(j).level == GOOD) region.get(j).level = BAD;
         }
       }
     }
