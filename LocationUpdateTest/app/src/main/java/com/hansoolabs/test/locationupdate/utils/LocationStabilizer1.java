@@ -13,9 +13,9 @@ import java.util.List;
  * Created by brownsoo on 2017. 3. 9..
  */
 
-public class LocationStabilizer {
+public class LocationStabilizer1 {
 
-    private static final String TAG = "LocationStabilizer";
+    private static final String TAG = "LocationStabilizer1";
 
     /** 신뢰도 */
     private enum TrustLevel {
@@ -45,7 +45,7 @@ public class LocationStabilizer {
 
     private LinkedList<WrapLocation> locations;
 
-    public LocationStabilizer() {
+    public LocationStabilizer1() {
 
         locations = new LinkedList<>();
 

@@ -66,7 +66,8 @@ import com.hansoolabs.test.locationupdate.events.FusedIntervalEvent;
 import com.hansoolabs.test.locationupdate.events.OverlayEvent;
 import com.hansoolabs.test.locationupdate.events.SourceEvent;
 import com.hansoolabs.test.locationupdate.utils.ContextUtils;
-import com.hansoolabs.test.locationupdate.utils.LocationStabilizer;
+import com.hansoolabs.test.locationupdate.utils.LocationStabilizer1;
+import com.hansoolabs.test.locationupdate.utils.LocationStabilizer2;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.squareup.otto.ThreadEnforcer;
@@ -140,7 +141,7 @@ public class MainActivity extends AppCompatActivity implements
     private List<LatLng> positions;
     private List<LatLng> stablePositions;
     private ProgressBar progressBar;
-    private LocationStabilizer stabilizer;
+    private LocationStabilizer2 stabilizer;
 
 
     private Handler handler = new Handler(new Handler.Callback() {
@@ -176,7 +177,7 @@ public class MainActivity extends AppCompatActivity implements
         stablePositions = new LinkedList<>();
         polyLines = new LinkedList<>();
         polyLinesStabilized = new LinkedList<>();
-        stabilizer = new LocationStabilizer();
+        stabilizer = new LocationStabilizer2();
 
         bus = new Bus(ThreadEnforcer.ANY);
         bus.register(this);
