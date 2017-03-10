@@ -7,3 +7,8 @@
 
 실행하려면, 
 - Google Map key 가 필요합니다. strings_keys.xml 넣어주세요.
+
+
+**위치보정 데모**
+
+[Location Stabilizing](https://brownsoo.github.io/Choosing-Android-Location-API/)
