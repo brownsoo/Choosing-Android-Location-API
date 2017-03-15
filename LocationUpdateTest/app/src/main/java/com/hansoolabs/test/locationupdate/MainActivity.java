@@ -12,7 +12,6 @@ import android.content.IntentFilter;
 import android.content.IntentSender;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.location.GpsSatellite;
 import android.location.GpsStatus;
@@ -66,8 +65,7 @@ import com.hansoolabs.test.locationupdate.events.FusedIntervalEvent;
 import com.hansoolabs.test.locationupdate.events.OverlayEvent;
 import com.hansoolabs.test.locationupdate.events.SourceEvent;
 import com.hansoolabs.test.locationupdate.utils.ContextUtils;
-import com.hansoolabs.test.locationupdate.utils.LocationStabilizer1;
-import com.hansoolabs.test.locationupdate.utils.LocationStabilizer2;
+import com.hansoolabs.test.locationupdate.utils.LocationStabilizer;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 import com.squareup.otto.ThreadEnforcer;
@@ -141,12 +139,16 @@ public class MainActivity extends AppCompatActivity implements
     private List<LatLng> positions;
     private List<LatLng> stablePositions;
     private ProgressBar progressBar;
-    private LocationStabilizer2 stabilizer;
+    private LocationStabilizer stabilizer;
 
 
     private Handler handler = new Handler(new Handler.Callback() {
         @Override
         public boolean handleMessage(Message message) {
+
+            if (MainActivity.this.isFinishing()) {
+                return false;
+            }
 
             switch (message.what) {
                 case WHAT_MESSAGE_LOOP:
@@ -157,7 +159,7 @@ public class MainActivity extends AppCompatActivity implements
 
                     handler.sendEmptyMessageDelayed(WHAT_MESSAGE_LOOP, 1000);
 
-                    break;
+                    return true;
             }
 
             return false;
@@ -177,7 +179,9 @@ public class MainActivity extends AppCompatActivity implements
         stablePositions = new LinkedList<>();
         polyLines = new LinkedList<>();
         polyLinesStabilized = new LinkedList<>();
-        stabilizer = new LocationStabilizer2();
+        stabilizer = new LocationStabilizer();
+        stabilizer.setUseSpeedCheck(true);
+        stabilizer.setUseDistanceCheck(false);
 
         bus = new Bus(ThreadEnforcer.ANY);
         bus.register(this);
@@ -385,12 +389,12 @@ public class MainActivity extends AppCompatActivity implements
         if (stable) {
             pos = stablePositions;
             lines = polyLinesStabilized;
-            color = Color.GREEN;
+            color = 0x00ff00;
         }
         else {
             pos = positions;
             lines = polyLines;
-            color = Color.RED;
+            color = 0xff0000;
         }
 
         if (pos.size() > MAX_LOCATION_COUNT) {
@@ -905,6 +909,7 @@ public class MainActivity extends AppCompatActivity implements
                         + currentSource + " /"
                         + activeNetworkTypeName();
                 logger.debug(text);
+                logger.debug(String.format(Locale.US, "lat:%f / lon:%f", location.getLatitude(), location.getLongitude()));
                 trace.append(text + "\n");
 
                 if (trace.getLineCount() > 30) {
@@ -927,6 +932,10 @@ public class MainActivity extends AppCompatActivity implements
                     stablePositions.add(new LatLng(location.getLatitude()+0.00003, location.getLongitude()+0.00003));
                     drawLine(true);
                     drawMarker(location.getLatitude()+0.00003, location.getLongitude()+0.00003, true);
+                }
+                else {
+                    logger.debug("------> ------> No Stable data");
+
                 }
             }
         });
