@@ -6,7 +6,6 @@ import android.app.FragmentTransaction;
 import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.IntentSender;
@@ -299,12 +298,7 @@ public class MainActivity extends AppCompatActivity implements
         }
 
 
-        handler.postDelayed(new Runnable() {
-            @Override
-            public void run() {
-                tryLocationUpdate();
-            }
-        }, 500);
+        handler.postDelayed(this::tryLocationUpdate, 500);
     }
 
 
@@ -354,11 +348,9 @@ public class MainActivity extends AppCompatActivity implements
         );
 
         googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(seoul, 18));
-        googleMap.setOnMapClickListener(new GoogleMap.OnMapClickListener() {
-            @Override
-            public void onMapClick(LatLng latLng) {
-                movingMapDelayCount = 6;
-            }
+        googleMap.setOnMapClickListener((latLng) -> {
+            Log.d(TAG, "setOnMapClickListener");
+            movingMapDelayCount = 6;
         });
 
     }
@@ -691,12 +683,9 @@ public class MainActivity extends AppCompatActivity implements
 
     }
 
-    private LocationListener fusedLocationListener = new LocationListener() {
-        @Override
-        public void onLocationChanged(Location location) {
-            if (location != null) {
-                traceLocation(location);
-            }
+    private LocationListener fusedLocationListener = location -> {
+        if (location != null) {
+            traceLocation(location);
         }
     };
 
@@ -887,56 +876,53 @@ public class MainActivity extends AppCompatActivity implements
         bus.post(new OverlayEvent(OverlayEvent.Field.Accuracy, String.valueOf(location.getAccuracy())));
         bus.post(new OverlayEvent(OverlayEvent.Field.Elapsed, String.valueOf(elapsed)));
 
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
+        runOnUiThread(() -> {
 
-                float distance = -1;
-                if (newLatlng != null) {
-                    distance = distanceBetween(newLatlng.latitude, newLatlng.longitude,
-                            location.getLatitude(), location.getLongitude());
-                }
+            float distance = -1;
+            if (newLatlng != null) {
+                distance = distanceBetween(newLatlng.latitude, newLatlng.longitude,
+                        location.getLatitude(), location.getLongitude());
+            }
 
-                newLatlng = new LatLng(location.getLatitude(), location.getLongitude());
-                String distanceString = String.format(Locale.US, "%.1f", distance);
+            newLatlng = new LatLng(location.getLatitude(), location.getLongitude());
+            String distanceString = String.format(Locale.US, "%.1f", distance);
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd HH:mm:ss", Locale.US);
-                String text = dateFormat.format(
-                        new Date(receiveTime)) + "  "
-                        + elapsed + " /"
-                        + location.getAccuracy() + "ac /"
-                        + distanceString + "m /"
-                        + currentSource + " /"
-                        + activeNetworkTypeName();
-                logger.debug(text);
-                logger.debug(String.format(Locale.US, "lat:%f / lon:%f", location.getLatitude(), location.getLongitude()));
-                trace.append(text + "\n");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("MM/dd HH:mm:ss", Locale.US);
+            String text = dateFormat.format(
+                    new Date(receiveTime)) + "  "
+                    + elapsed + " /"
+                    + location.getAccuracy() + "ac /"
+                    + distanceString + "m /"
+                    + currentSource + " /"
+                    + activeNetworkTypeName();
+            logger.debug(text);
+            logger.debug(String.format(Locale.US, "lat:%f / lon:%f", location.getLatitude(), location.getLongitude()));
+            trace.append(text + "\n");
 
-                if (trace.getLineCount() > 30) {
-                    Editable editable = trace.getEditableText();
-                    int start = trace.getLayout().getLineStart(0);
-                    int end = trace.getLayout().getLineEnd(0);
-                    editable.delete(start, end);
-                }
+            if (trace.getLineCount() > 30) {
+                Editable editable = trace.getEditableText();
+                int start = trace.getLayout().getLineStart(0);
+                int end = trace.getLayout().getLineEnd(0);
+                editable.delete(start, end);
+            }
 
-                scrollToBottom(trace);
+            scrollToBottom(trace);
 
-                // Draw raw data
-                positions.add(newLatlng);
-                drawLine(false);
-                drawMarker(location.getLatitude(), location.getLongitude(), false);
+            // Draw raw data
+            positions.add(newLatlng);
+            drawLine(false);
+            drawMarker(location.getLatitude(), location.getLongitude(), false);
 
 
-                // Stabilize data
-                if(stabilizer.isStableLocation(location)) {
-                    stablePositions.add(new LatLng(location.getLatitude()+0.00003, location.getLongitude()+0.00003));
-                    drawLine(true);
-                    drawMarker(location.getLatitude()+0.00003, location.getLongitude()+0.00003, true);
-                }
-                else {
-                    logger.debug("------> ------> No Stable data");
+            // Stabilize data
+            if(stabilizer.isStableLocation(location)) {
+                stablePositions.add(new LatLng(location.getLatitude()+0.00003, location.getLongitude()+0.00003));
+                drawLine(true);
+                drawMarker(location.getLatitude()+0.00003, location.getLongitude()+0.00003, true);
+            }
+            else {
+                logger.debug("------> ------> No Stable data");
 
-                }
             }
         });
 
@@ -1041,68 +1027,59 @@ public class MainActivity extends AppCompatActivity implements
 
     private void zipFiles() {
 
-        new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
+        new Thread(() -> {
+            try {
 
-                    final int BUFFER = 2048;
+                final int BUFFER = 2048;
 
-                    BufferedInputStream origin;
-                    File downloadFolder =
-                            Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
-                    File zipDir = new File(downloadFolder, "log-archive");
-                    if (!zipDir.exists()) {
-                        //noinspection ResultOfMethodCallIgnored
-                        zipDir.mkdir();
-                    }
-                    SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd-HH:mm:ss", Locale.US);
-                    String zipFileName = String.format("log-%s.zip", dateFormat.format(new Date()));
-                    final File zipFile = new File(zipDir, zipFileName);
-                    FileOutputStream dest = new FileOutputStream(zipFile);
-                    CheckedOutputStream checksum = new CheckedOutputStream(dest, new Adler32());
-                    ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(checksum));
-                    //out.setMethod(ZipOutputStream.STORED); // not compressed
-                    byte data[] = new byte[BUFFER];
-
-                    File[] files  = logDir().listFiles();
-
-                    for (File file : files) {
-                        Log.d(TAG, "Zip Adding: " + file);
-                        FileInputStream fi = new FileInputStream(file);
-                        origin = new BufferedInputStream(fi, BUFFER);
-                        ZipEntry entry = new ZipEntry(file.getPath());
-                        out.putNextEntry(entry);
-                        int count;
-                        while ((count = origin.read(data, 0, BUFFER)) != -1) {
-                            out.write(data, 0, count);
-                        }
-                        origin.close();
-
-
-                    }
-                    out.close();
-                    Log.d(TAG, "checksum: "+checksum.getChecksum().getValue());
-
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            progressBar.setVisibility(View.GONE);
-                            handleWithEmailDialog(MainActivity.this, zipFile);
-                        }
-                    });
-
-
-                } catch(Exception e) {
-                    e.printStackTrace();
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            Toast.makeText(MainActivity.this,"Error on making a zip.", Toast.LENGTH_LONG).show();
-                            progressBar.setVisibility(View.GONE);
-                        }
-                    });
+                BufferedInputStream origin;
+                File downloadFolder =
+                        Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS);
+                File zipDir = new File(downloadFolder, "log-archive");
+                if (!zipDir.exists()) {
+                    //noinspection ResultOfMethodCallIgnored
+                    zipDir.mkdir();
                 }
+                SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy_MM_dd-HH:mm:ss", Locale.US);
+                String zipFileName = String.format("log-%s.zip", dateFormat.format(new Date()));
+                final File zipFile = new File(zipDir, zipFileName);
+                FileOutputStream dest = new FileOutputStream(zipFile);
+                CheckedOutputStream checksum = new CheckedOutputStream(dest, new Adler32());
+                ZipOutputStream out = new ZipOutputStream(new BufferedOutputStream(checksum));
+                //out.setMethod(ZipOutputStream.STORED); // not compressed
+                byte data[] = new byte[BUFFER];
+
+                File[] files  = logDir().listFiles();
+
+                for (File file : files) {
+                    Log.d(TAG, "Zip Adding: " + file);
+                    FileInputStream fi = new FileInputStream(file);
+                    origin = new BufferedInputStream(fi, BUFFER);
+                    ZipEntry entry = new ZipEntry(file.getPath());
+                    out.putNextEntry(entry);
+                    int count;
+                    while ((count = origin.read(data, 0, BUFFER)) != -1) {
+                        out.write(data, 0, count);
+                    }
+                    origin.close();
+
+
+                }
+                out.close();
+                Log.d(TAG, "checksum: "+checksum.getChecksum().getValue());
+
+                runOnUiThread(() -> {
+                    progressBar.setVisibility(View.GONE);
+                    handleWithEmailDialog(MainActivity.this, zipFile);
+                });
+
+
+            } catch(Exception e) {
+                e.printStackTrace();
+                runOnUiThread(() -> {
+                    Toast.makeText(MainActivity.this,"Error on making a zip.", Toast.LENGTH_LONG).show();
+                    progressBar.setVisibility(View.GONE);
+                });
             }
         }).start();
     }
@@ -1125,17 +1102,14 @@ public class MainActivity extends AppCompatActivity implements
 
         android.app.AlertDialog.Builder builder = new android.app.AlertDialog.Builder(context);
         builder.setMessage("로그를 메일로 보내주시겠습니까?")
-                .setPositiveButton("메일보내기", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
-                                "mailto", "hyunsoo.han@meshkorea.net", null));
-                        intent.putExtra(Intent.EXTRA_SUBJECT, "로그 보냄");
-                        intent.putExtra(Intent.EXTRA_TEXT, ("\n\n" + sb.toString()));
-                        Uri uri = Uri.fromFile(file);
-                        intent.putExtra(Intent.EXTRA_STREAM, uri);
-                        context.startActivity(Intent.createChooser(intent, "Send email..."));
-                    }
+                .setPositiveButton("메일보내기", (dialogInterface, i) -> {
+                    Intent intent = new Intent(Intent.ACTION_SENDTO, Uri.fromParts(
+                            "mailto", "hyunsoo.han@meshkorea.net", null));
+                    intent.putExtra(Intent.EXTRA_SUBJECT, "로그 보냄");
+                    intent.putExtra(Intent.EXTRA_TEXT, ("\n\n" + sb.toString()));
+                    Uri uri = Uri.fromFile(file);
+                    intent.putExtra(Intent.EXTRA_STREAM, uri);
+                    context.startActivity(Intent.createChooser(intent, "Send email..."));
                 })
                 .setNegativeButton("닫기", null)
                 .create()

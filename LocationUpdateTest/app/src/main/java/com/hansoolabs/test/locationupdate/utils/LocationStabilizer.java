@@ -58,22 +58,27 @@ public class LocationStabilizer {
 
     }
 
+    @SuppressWarnings("unused")
     public boolean isStableLocation(@NonNull Location location) {
         return getLocationLevel(location).value > TrustLevel.Bad.value();
     }
 
+    @SuppressWarnings("unused")
     public boolean isUseSpeedCheck() {
         return useSpeedCheck;
     }
 
+    @SuppressWarnings("unused")
     public void setUseSpeedCheck(boolean value) {
         useDistanceCheck = value;
     }
 
+    @SuppressWarnings("unused")
     public boolean isUseDistanceCheck() {
         return useDistanceCheck;
     }
 
+    @SuppressWarnings("unused")
     public void setUseDistanceCheck(boolean value) {
         useDistanceCheck = value;
     }
@@ -251,7 +256,6 @@ public class LocationStabilizer {
     private class WrapLocation {
 
         private long time;
-        private float speed = 0;
         private TrustLevel level = TrustLevel.Good;
         private Location location;
 
@@ -261,19 +265,15 @@ public class LocationStabilizer {
             this.level = level;
         }
 
-        public long getTime() {
-            return time;
-        }
-
-        public TrustLevel getLevel() {
+        TrustLevel getLevel() {
             return level;
         }
 
-        public void setLevel(TrustLevel level) {
+        void setLevel(TrustLevel level) {
             this.level = level;
         }
 
-        public float getDistance(WrapLocation origin) {
+        float getDistance(WrapLocation origin) {
             try {
                 float[] results = new float[3];
                 Location.distanceBetween(
@@ -289,7 +289,7 @@ public class LocationStabilizer {
             return -1;
         }
 
-        public float getSpeed(WrapLocation old) {
+        float getSpeed(WrapLocation old) {
             float distance = getDistance(old);
             long interval = this.time - old.time;
             float sec = interval / 1000f;
@@ -297,11 +297,11 @@ public class LocationStabilizer {
             return distance / sec;
         }
 
-        public boolean isComparableSpeed(WrapLocation old) {
+        boolean isComparableSpeed(WrapLocation old) {
             return (this.time - old.time < SPEED_TIME_CLUE) && (this.time > old.time);
         }
 
-        public boolean isComparableTime(WrapLocation old) {
+        boolean isComparableTime(WrapLocation old) {
             return (this.time - old.time < DISTANCE_TIME_CLUE) && (this.time > old.time);
         }
 
