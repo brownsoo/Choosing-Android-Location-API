@@ -5,7 +5,7 @@ import android.support.annotation.NonNull;
 import android.util.Log;
 
 import java.util.ArrayList;
-import java.util.Collections;
+import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -194,7 +194,7 @@ public class LocationStabilizer {
             // ## start grouping
             List<List<WrapLocation>> regionList = new ArrayList<>();
             // 첫 구역
-            regionList.add(Collections.singletonList(locations.get(0)));
+            regionList.add(Arrays.asList(locations.get(0)));
 
             int length = locations.size();
             for (int i=1; i < length; i++) {
@@ -212,7 +212,7 @@ public class LocationStabilizer {
 
                 if (!added) {
                     // 새 구역
-                    regionList.add(Collections.singletonList(next));
+                    regionList.add(Arrays.asList(next));
                 }
 
             } // <-- 구역 나누기
