@@ -1,15 +1,13 @@
 package com.hansoolabs.test.locationupdate;
 
-import android.content.Context;
 import android.location.Location;
-import android.support.test.InstrumentationRegistry;
 import android.support.test.runner.AndroidJUnit4;
 import android.util.Log;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import com.hansoolabs.test.locationupdate.utils.LocationStabilizer;
+import com.hansoolabs.test.locationupdate.stabilizer.LocationStabilizer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -29,6 +27,8 @@ public class LocationStabilizerTest {
 
     @Test
     public void locationStabilizer_isFixingDataSR380() {
+
+        LocationStabilizer.LevelledLocation levelledLocation;
 
         LocationStabilizer stabilizer = new LocationStabilizer();
         stabilizer.setUseSpeedCheck(false);

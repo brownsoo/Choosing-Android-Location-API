@@ -1,11 +1,15 @@
-package com.hansoolabs.test.locationupdate.utils;
+package com.hansoolabs.test.locationupdate.stabilizer;
 
 import android.location.Location;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.util.Log;
+
+import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Date;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -18,25 +22,6 @@ public class LocationStabilizer {
 
     private static final String TAG = "LocationStabilizer";
 
-
-
-    /** 신뢰도 */
-    private enum TrustLevel {
-        Terrible(0),
-        Bad(1),
-        Good(2);
-
-        private int value;
-
-        TrustLevel(int value) {
-            this.value = value;
-        }
-
-        int value() {
-            return this.value;
-        }
-    }
-
     private static final int BAD_ACCURACY_THRESHOLD = 350; // Terrible 레벨을 정하기 위한 Accuracy
     private static final int MAX_HISTORY_COUNT = 10; // 기억하고 있는 최근 위치값 최대 갯수
     private static final int DISTANCE_THRESHOLD = 3000; // 단위 m, 정상 거리로 보는 한계값
@@ -48,7 +33,7 @@ public class LocationStabilizer {
     private static final int GROUPING_MINIMUM_COUNT = 3; // 구역을 나눌 수 있는 최소 위치 갯수
     private static final int GROUPING_ASSUME_BAD_COUNT = 3; // 큰 구역은 아니지만, 정상적인 데이터로 봐야 하는 구역 내 아이템 갯수
 
-    private LinkedList<WrapLocation> locations;
+    private LinkedList<LevelledLocation> locations;
     private boolean useSpeedCheck = true;
     private boolean useDistanceCheck = false;
 
@@ -60,7 +45,7 @@ public class LocationStabilizer {
 
     @SuppressWarnings("unused")
     public boolean isStableLocation(@NonNull Location location) {
-        return getLocationLevel(location).value > TrustLevel.Bad.value();
+        return getLocationLevel(location).value() > TrustLevel.Bad.value();
     }
 
     @SuppressWarnings("unused")
@@ -93,7 +78,7 @@ public class LocationStabilizer {
 
         Log.d(TAG, "getLocationLevel() ac=" + location.getAccuracy());
 
-        WrapLocation income = new WrapLocation(location, TrustLevel.Good); // 인입 기본 레벨 Good
+        LevelledLocation income = new LevelledLocation(location, TrustLevel.Good); // 인입 기본 레벨 Good
 
         if (location.getAccuracy() > BAD_ACCURACY_THRESHOLD) { // 분명히 나쁜 데이터
             income.setLevel(TrustLevel.Terrible);
@@ -122,9 +107,9 @@ public class LocationStabilizer {
         return income.getLevel();
     }
 
-    private void setLevelWithSpeed(WrapLocation location, List<WrapLocation> history) {
+    private void setLevelWithSpeed(LevelledLocation location, List<LevelledLocation> history) {
         if(history.size() >= SPEED_CHECKABLE_COUNT) { // ## 속력으로 레벨 측정
-            WrapLocation last = null;
+            LevelledLocation last = null;
             int length = history.size();
             for (int i=length-1; i>=0; i--) {
                 // Terrible 레벨 제외
@@ -153,10 +138,10 @@ public class LocationStabilizer {
     }
 
 
-    private void setLevelWithDistance(WrapLocation location, List<WrapLocation> history) {
+    private void setLevelWithDistance(LevelledLocation location, List<LevelledLocation> history) {
         if (history.size() > 0) {
 
-            WrapLocation last = null;
+            LevelledLocation last = null;
             int length = history.size();
             for (int i=length-1; i>=0; i--) {
                 // Bad 레벨 제외
@@ -192,17 +177,17 @@ public class LocationStabilizer {
 
         if (locations.size() >= GROUPING_MINIMUM_COUNT) {
             // ## start grouping
-            List<List<WrapLocation>> regionList = new ArrayList<>();
+            List<List<LevelledLocation>> regionList = new ArrayList<>();
             // 첫 구역
             regionList.add(new ArrayList<>(Arrays.asList(locations.get(0))));
 
             int length = locations.size();
             for (int i=1; i < length; i++) {
 
-                WrapLocation next = locations.get(i);
+                LevelledLocation next = locations.get(i);
                 boolean added = false;
                 // 기존 구역 내 위치들과 비교하여, 같은 구역에 포함할지 판단한다.
-                for(List<WrapLocation> region :regionList) {
+                for(List<LevelledLocation> region :regionList) {
                     if (isLocationBelongToRegion(next, region)) {
                         region.add(next);
                         added = true;
@@ -223,10 +208,10 @@ public class LocationStabilizer {
 
     }
 
-    private boolean isLocationBelongToRegion(WrapLocation origin, List<WrapLocation> region) {
+    private boolean isLocationBelongToRegion(LevelledLocation origin, List<LevelledLocation> region) {
 
         for (int k=region.size() - 1; k >= 0 ; k--) { // 구역 내 최근 위치부터
-            WrapLocation target = region.get(k);
+            LevelledLocation target = region.get(k);
             // 그룹 내에 어느 위치와 비교하여 라이더가 갈 수 있는 거리라면,
             // 같은 구역으로 설정한다.
             float distance = origin.getDistance(target);
@@ -239,8 +224,8 @@ public class LocationStabilizer {
 
     }
 
-    private void setBadLevelInSmallRegion(List<List<WrapLocation>> regionList) {
-        for(List<WrapLocation> group :regionList) {
+    private void setBadLevelInSmallRegion(List<List<LevelledLocation>> regionList) {
+        for(List<LevelledLocation> group :regionList) {
             // 사이즈가 분명히 작은 구역 내 Good 위치들을 Bad 로 변경
             // 예) 만약 튀는 값이 같은 범위에서 2회 연속 발생할 경우,
             // 2번째 위치값 또한 믿을 수 없는 값으로 판단해줘야 한다.
@@ -253,32 +238,60 @@ public class LocationStabilizer {
     }
 
 
-    private class WrapLocation {
+    public static class LevelledLocation {
 
-        private long time;
-        private TrustLevel level = TrustLevel.Good;
+
         private Location location;
 
-        WrapLocation(@NonNull Location location, @NonNull TrustLevel level) {
+        @SerializedName("level")
+        private TrustLevel level = TrustLevel.Good;
+        @SerializedName("latitude")
+        private Double latitude = null;
+        @SerializedName("longitude")
+        private Double longitude = null;
+        @SerializedName("time")
+        private long time;
+
+        LevelledLocation(@Nullable Location location, @NonNull TrustLevel level) {
             this.location = location;
-            this.time = location.getTime();
             this.level = level;
+
+            if (location != null) {
+                this.time = location.getTime();
+                this.latitude = location.getLatitude();
+                this.longitude = location.getLongitude();
+            }
         }
 
-        TrustLevel getLevel() {
+        public TrustLevel getLevel() {
             return level;
         }
 
-        void setLevel(TrustLevel level) {
+        public void setLevel(TrustLevel level) {
             this.level = level;
         }
 
-        float getDistance(WrapLocation origin) {
+        public Double getLatitude() {
+            return latitude;
+        }
+        public void setLatitude(Double latitude) {
+            this.latitude = latitude;
+        }
+
+        public Double getLongitude() {
+            return longitude;
+        }
+        public void setLongitude(Double longitude) {
+            this.longitude = longitude;
+        }
+
+
+        public float getDistance(LevelledLocation origin) {
             try {
                 float[] results = new float[3];
                 Location.distanceBetween(
-                        origin.location.getLatitude(), origin.location.getLongitude(),
-                        location.getLatitude(), location.getLongitude(),
+                        origin.getLocation().getLatitude(), origin.getLocation().getLongitude(),
+                        getLatitude(), getLongitude(),
                         results);
 
                 return results[0];
@@ -289,7 +302,11 @@ public class LocationStabilizer {
             return -1;
         }
 
-        float getSpeed(WrapLocation old) {
+        public Location getLocation() {
+            return this.location;
+        }
+
+        public float getSpeed(LevelledLocation old) {
             float distance = getDistance(old);
             long interval = this.time - old.time;
             float sec = interval / 1000f;
@@ -297,13 +314,15 @@ public class LocationStabilizer {
             return distance / sec;
         }
 
-        boolean isComparableSpeed(WrapLocation old) {
+        public boolean isComparableSpeed(LevelledLocation old) {
             return (this.time - old.time < SPEED_TIME_CLUE) && (this.time > old.time);
         }
 
-        boolean isComparableTime(WrapLocation old) {
+        public boolean isComparableTime(LevelledLocation old) {
             return (this.time - old.time < DISTANCE_TIME_CLUE) && (this.time > old.time);
         }
+
+
 
     }
 

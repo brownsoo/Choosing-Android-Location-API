@@ -9,7 +9,7 @@ import android.util.Log;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.JsonSyntaxException;
-import com.hansoolabs.test.locationupdate.utils.LocationStabilizer;
+import com.hansoolabs.test.locationupdate.stabilizer.LocationStabilizer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

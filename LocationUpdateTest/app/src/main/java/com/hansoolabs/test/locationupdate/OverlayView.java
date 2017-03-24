@@ -13,6 +13,7 @@ import com.hansoolabs.test.locationupdate.events.EmailEvent;
 import com.hansoolabs.test.locationupdate.events.FusedIntervalEvent;
 import com.hansoolabs.test.locationupdate.events.OverlayEvent;
 import com.hansoolabs.test.locationupdate.events.SourceEvent;
+import com.hansoolabs.test.locationupdate.events.ToggleSourceEvent;
 import com.squareup.otto.Bus;
 import com.squareup.otto.Subscribe;
 
