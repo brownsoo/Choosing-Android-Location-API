@@ -18,27 +18,14 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.StringReader;
 
-import static org.junit.Assert.*;
-
 /**
- * Instrumentation test, which will execute on an Android device.
  *
- * @see <a href="http://d.android.com/tools/testing">Testing documentation</a>
+ * Created by brownsoo on 2017. 3. 15..
  */
 @RunWith(AndroidJUnit4.class)
-public class ExampleInstrumentedTest {
+public class LocationStabilizerTest {
 
-
-
-    @Test
-    public void useAppContext() throws Exception {
-        // Context of the app under test.
-        Context appContext = InstrumentationRegistry.getTargetContext();
-
-        assertEquals("com.hansoolabs.test.locationupdatetest", appContext.getPackageName());
-    }
-
-
+    private static final String TAG = "LocationStabilizerTest";
 
     @Test
     public void locationStabilizer_isFixingDataSR380() {
@@ -47,7 +34,7 @@ public class ExampleInstrumentedTest {
         stabilizer.setUseSpeedCheck(false);
         stabilizer.setUseDistanceCheck(true);
 
-        BufferedReader reader = new BufferedReader(new StringReader(/* row data */));
+        BufferedReader reader = new BufferedReader(new StringReader("RAW DATA")); //TODO raw data
         String line;
         Gson gson = new GsonBuilder()
                 .setDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSXXX")
@@ -62,7 +49,7 @@ public class ExampleInstrumentedTest {
                     location.setTime(data.getTimestamp().getTime());
 
                     if (!stabilizer.isStableLocation(location)) {
-                        Log.d("FixingDataSR380", location.getLatitude() + "/" + location.getLongitude());
+                        Log.d(TAG, location.getLatitude() + "/" + location.getLongitude());
                     }
 
                 } catch (JsonSyntaxException e) {
@@ -75,5 +62,9 @@ public class ExampleInstrumentedTest {
         }
 
     }
-    
+
+
+
+
+
 }
