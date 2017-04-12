@@ -263,22 +263,22 @@ public class LocationStabilizer {
             }
         }
 
-        public TrustLevel getLevel() {
+        TrustLevel getLevel() {
             return level;
         }
 
-        public void setLevel(TrustLevel level) {
+        void setLevel(TrustLevel level) {
             this.level = level;
         }
 
-        public Double getLatitude() {
+        Double getLatitude() {
             return latitude;
         }
         public void setLatitude(Double latitude) {
             this.latitude = latitude;
         }
 
-        public Double getLongitude() {
+        Double getLongitude() {
             return longitude;
         }
         public void setLongitude(Double longitude) {
@@ -286,7 +286,7 @@ public class LocationStabilizer {
         }
 
 
-        public float getDistance(LevelledLocation origin) {
+        float getDistance(LevelledLocation origin) {
             try {
                 float[] results = new float[3];
                 Location.distanceBetween(
@@ -302,11 +302,11 @@ public class LocationStabilizer {
             return -1;
         }
 
-        public Location getLocation() {
+        Location getLocation() {
             return this.location;
         }
 
-        public float getSpeed(LevelledLocation old) {
+        float getSpeed(LevelledLocation old) {
             float distance = getDistance(old);
             long interval = this.time - old.time;
             float sec = interval / 1000f;
@@ -314,11 +314,11 @@ public class LocationStabilizer {
             return distance / sec;
         }
 
-        public boolean isComparableSpeed(LevelledLocation old) {
+        boolean isComparableSpeed(LevelledLocation old) {
             return (this.time - old.time < SPEED_TIME_CLUE) && (this.time > old.time);
         }
 
-        public boolean isComparableTime(LevelledLocation old) {
+        boolean isComparableTime(LevelledLocation old) {
             return (this.time - old.time < DISTANCE_TIME_CLUE) && (this.time > old.time);
         }
 
